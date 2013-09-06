@@ -17,7 +17,7 @@ extreme_lo = ['stale','cold','dusty','moth-eaten','frigid','arctic','gelid','gla
 # mid_lo = ['shady','dim','grey','faint','weak','dim','shadowy','vague','wispy','feeble','light','swooning','light-headed','lightheaded','fainthearted','timid','faint-hearted','cloudy','muddy','murky','turbid']
 # mid_hi = ['light','shiny','clear','lustrous','diaphanous','filmy','gauze-like','gossamer','see-through','sheer','transparent','vaporous','vapourous','cobwebby']
 # extreme_hi = ['blinding','superbright','brilliant','vivid','brilliant','vivid','smart','burnished','lustrous','shining','shiny','undimmed','promising','sunny','sunshiny']
-extreme_hi = ['raging','hot','angry','furious','tempestuous','wild','blistering','acerb','acerbic','acid','acrid','bitter','caustic','sulfurous','sulphurous','virulent','vitriolic','blistery','red-hot','scalding','scathing','venomous','vituperative','juicy','luscious','toothsome','voluptuous','sizzling','live','unrecorded','bouncy','lively','resilient','springy','alive']
+extreme_hi = ['raging','hot','angry','furious','tempestuous','wild','blistering','acerbic','acid','acrid','bitter','caustic','sulfurous','sulphurous','virulent','vitriolic','blistery','red-hot','scalding','scathing','venomous','vituperative','juicy','luscious','toothsome','voluptuous','sizzling','live','unrecorded','bouncy','lively','resilient','springy','alive']
 preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','Well looky here, it is ','Suddenly: ','Call the police, it is ','After awhile: ','Things have changed; now it\'s more ','Hey now! It is very ']
 dream = ['i am falling', 'i am walking and falling', 'i had to take a test', 'i have eaten an embarrassing amount of gum']
 
@@ -47,7 +47,7 @@ def checkSensor():
     r = t.getTemp()
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
-    	del readings[:-WINDOW_SIZE]
+        del readings[:-WINDOW_SIZE]
     
     avg = 0
     for i in readings[-WINDOW_SIZE:]:
@@ -76,6 +76,8 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
+    printer.print(parseLen(str(time.ctime())))
+    printer.feed(1)
     printer.print(parseLen('A DREAM: '+random.choice(dream)))
     printer.feed(1)
 
