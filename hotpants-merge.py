@@ -71,7 +71,7 @@ def checkSensor():
             noop = 0
             emit_remark(r, delta, avg)
         else:
-            break
+            pass
     else:
         noop += 1
         if noop > noop_threshold:
