@@ -10,6 +10,8 @@ import random
 import atexit
 import sentence_generator as sg
 
+theObj = 'MUG'
+
 t = tmp.TMP102()
 readings = []
 sensor_pin = 'P9_40'
