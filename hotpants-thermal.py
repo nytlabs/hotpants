@@ -10,7 +10,7 @@ import random
 import atexit
 
 t = tmp.TMP102()
-
+readings = []
 sensor_pin = 'P9_40'
 # extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
 extreme_lo = ['stale','cold','dusty','moth-eaten','frigid','arctic','gelid','glacial','icy','polar','frosty','frozen','wintry','cold-blooded','inhuman','insensate','insentient']
@@ -47,7 +47,7 @@ def checkSensor():
     r = t.getTemp()
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
-    	readings = readings[-WINDOW_SIZE:]
+    	del readings[:-WINDOW_SIZE]
     
     avg = 0
     for i in readings[-WINDOW_SIZE:]:
@@ -99,7 +99,6 @@ printer.feed(1)
 rPast = 0
 rMax = 0 # all-time max sensor reading
 rMin = 0 # all-time min sensor reading
-readings = []
 WINDOW_SIZE = 30 # size of moving-window avg
 noop = 0 # number of intervals passed without a trigger
 noop_threshold = 50
