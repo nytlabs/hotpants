@@ -1,0 +1,7 @@
+[Unit]
+Description=NYT R&D HOT_PANTS timer
+
+[Timer]
+OnBootSec=200
+OnUnitInactiveSec=10
+Unit=hotpants.service

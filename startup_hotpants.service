@@ -1,0 +1,11 @@
+[Unit]
+Description=NYT R&D HOT_PANTS startup
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/root/Python-Thermal-Printer/
+ExecStart=/usr/bin/python startup_hotpants.py
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
