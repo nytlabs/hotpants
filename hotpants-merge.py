@@ -79,7 +79,8 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
-    sen = sg.generate(theObj, r, delta, True)
+    norm = mapVals(r,rMin, rMax, 0.0, 1.0)
+    sen = sg.generate(theObj, norm, delta, True)
     printer.print(parseLen(sen))
     # printer.print(parseLen(str(time.ctime())))
     # printer.feed(1)
@@ -87,7 +88,8 @@ def emit_dream(r, delta, avg):
     # printer.feed(1)
 
 def emit_remark(r, delta, avg):
-    sen = sg.generate(theObj, r, delta, False)
+    norm = mapVals(r,rMin, rMax, 0.0, 1.0)
+    sen = sg.generate(theObj, norm, delta, False)
     printer.print(parseLen(sen))
     # printer.print(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
     # printer.feed(1)
@@ -97,6 +99,8 @@ def exit_handler():
     # print 'exiting'
     # adc.cleanup()
     # uart.cleanup() # not yet supported?
+def mapVals(self, val, inMin, inMax, outMin, outMax):
+        toRet = outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin))
 
 uart.setup("UART2")
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
