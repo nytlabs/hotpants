@@ -83,8 +83,9 @@ def emit_dream(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 0.0, 1.0)
     sen = sg.generate(theObj, norm, delta, True)
     printer.print(parseLen(sen))
-    # printer.print(parseLen(str(time.ctime())))
-    # printer.feed(1)
+    printer.feed(1)
+    printer.print(parseLen(str(time.ctime())))
+    printer.feed(1)
     # printer.print(parseLen('A DREAM: '+random.choice(dream)))
     # printer.feed(1)
 
@@ -92,6 +93,7 @@ def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 0.0, 1.0)
     sen = sg.generate(theObj, norm, delta, False)
     printer.print(parseLen(sen))
+    printer.feed(1)
     # printer.print(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
     # printer.feed(1)
 
@@ -122,4 +124,5 @@ emission_threshold = 0.7
 
 while True:
     checkSensor()
+    print 'hello'
     time.sleep(0.5)
