@@ -46,12 +46,14 @@ def checkSensor():
     # change this to whatever get-readings call we need
     r = t.getTemp()
     readings.append(r)
+    if len(readings)>WINDOW_SIZE:
+    	readings = readings[-WINDOW_SIZE:]
     
     avg = 0
     for i in readings[-WINDOW_SIZE:]:
         avg += (i/float(WINDOW_SIZE))
 
-    delta = r-rPast
+    delta = r-avg
     print (r, delta, avg)
     if r > rMax:
         rMax = r
