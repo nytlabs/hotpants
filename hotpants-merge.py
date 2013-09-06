@@ -58,7 +58,7 @@ def checkSensor():
         avg += (i/WINDOW_SIZE)
 
     delta = r-avg
-    print (r, delta, avg)
+    print(r, delta, avg)
     if r > rMax:
         rMax = r
         # does this merit an emission? Or should delta have to be > threshold?
@@ -124,5 +124,5 @@ emission_threshold = 0.7
 
 while True:
     checkSensor()
-    print 'hello'
+    print('hello')
     time.sleep(0.5)
