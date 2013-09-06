@@ -31,7 +31,7 @@ printer.upsideDownOn()
 printer.feed(1)
 printer.print('i am awake and i am dreaming')
 printer.feed(1)
-printer.print(str(time.ctime()))
+printer.print(parseLen(str(time.ctime())))
 printer.feed(1)
 rPast = 0
 emission_threshold = 100

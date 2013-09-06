@@ -28,6 +28,13 @@ printer.feed(3)
 printer.print("o hai")
 printer.feed(1)
 rPast = 0
+rMax = 0 # all-time max sensor reading
+rMin = 0 # all-time min sensor reading
+readings = []
+WINDOW_SIZE = 30 # size of moving-window avg
+noop = 0 # number of intervals passed without a trigger
+noop_threshold = 50
+
 emission_threshold = 0.7
 
 def parseLen(text):
@@ -49,31 +56,41 @@ def parseLen(text):
 
 def checkSensor():
 	global rPast
-	# r = adc.read(sensor_pin)
+	global rMin
+	global rMax
+	global noop
+	# change this to whatever get-readings call we need
 	r = t.getTemp()
+	readings.append(r)
+	avg = 0
+	for i in readings[-WINDOW_SIZE:]:
+		avg += (i/float(WINDOW_SIZE))
+	
+	if r > rMax:
+		rMax = r
+		# does this merit an emission? Or should delta have to be > threshold?
+	if r < rMin:
+		rMin = r
+		# does this merit an emission? Or should delta have to be > threshold?
 
-	if abs(r-rPast) > emission_threshold:
-		# if r < 0.25:
-		# 	printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
-		# 	printer.feed(1)
-		# elif r < 0.5:
-		# 	printer.print(parseLen(random.choice(preamble) + random.choice(mid_lo)))
-		# 	printer.feed(1)
-		# elif r < 0.75:
-		# 	printer.print(parseLen(random.choice(preamble) + random.choice(mid_hi)))
-		# 	printer.feed(1)
-		# else:
-		# 	printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
-		# 	printer.feed(1)
-		if r < rPast:
-			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_lo)))
-			printer.feed(1)
-		else:
-			printer.print(parseLen(random.choice(preamble) + random.choice(extreme_hi)))
-			printer.feed(1)
-		printer.print(r)
-		printer.feed(2)
+	delta = r-rPast
+
+	if abs(delta) > emission_threshold:
+		noop = 0
+		# emit a message
+		emit_remark(r, delta, avg)
+	else:
+		noop++
+		if noop > noop_threshold:
+			noop = 0
+			emit_dream(r, delta, avg)
 	rPast = r
+
+def emit_dream(r, delta, avg):
+	printer.print(parseLen(random.choice(preamble)+random.choice(dream)))
+
+def emit_remark(r, delta, avg):
+	pass
 
 def exit_handler():
     pass
