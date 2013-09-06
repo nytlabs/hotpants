@@ -1,6 +1,7 @@
 # oh boy oh boy!
 # It's project HOT_PANTS
 from __future__ import print_function
+from __future__ import division
 import Adafruit_BBIO.UART as uart
 from Adafruit_Thermal import *
 import TMP102 as tmp
@@ -54,7 +55,7 @@ def checkSensor():
     
     avg = 0
     for i in readings[-WINDOW_SIZE:]:
-        avg += (i/float(WINDOW_SIZE))
+        avg += (i/WINDOW_SIZE)
 
     delta = r-avg
     print (r, delta, avg)
