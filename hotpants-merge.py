@@ -79,7 +79,7 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
-    norm = mapVals(r,rMin, rMax, 0.0, 1.0)
+    norm = mapVals(r,rMin, rMax, 0.0, 0.999)
     sen = sg.generate(theObj, norm, delta, True)
     printer.print(parseLen(sen))
     printer.feed(1)
@@ -89,7 +89,7 @@ def emit_dream(r, delta, avg):
     # printer.feed(1)
 
 def emit_remark(r, delta, avg):
-    norm = mapVals(r,rMin, rMax, 0.0, 1.0)
+    norm = mapVals(r,rMin, rMax, 0.0, 0.999)
     sen = sg.generate(theObj, norm, delta, False)
     printer.print(parseLen(sen))
     printer.feed(1)
