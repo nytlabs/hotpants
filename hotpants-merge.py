@@ -66,9 +66,12 @@ def checkSensor():
         # does this merit an emission? Or should delta have to be > threshold?
 
     if abs(delta) > emission_threshold:
-        print('emitting remark')
-        noop = 0
-        emit_remark(r, delta, avg)
+        if len(readings)==WINDOW_SIZE:
+            print('emitting remark')
+            noop = 0
+            emit_remark(r, delta, avg)
+        else:
+            break
     else:
         noop += 1
         if noop > noop_threshold:
@@ -122,5 +125,4 @@ emission_threshold = 0.7
 
 while True:
     checkSensor()
-    print('hello')
     time.sleep(0.5)
