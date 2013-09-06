@@ -84,7 +84,7 @@ data = {
 
 ###  FUNCTION ###
 def generate(obj, reading, diff, dream=False):
-	print 'received %s %s %s %s' % (obg, reading, diff, dream)
+	print 'received %s %s %s %s' % (obj, reading, diff, dream)
 	sentence = data[obj]["sentences"][random.randint(0,len(data[obj]["sentences"])-1)]
 	type = sentence["type"]
 	descriptor = None
