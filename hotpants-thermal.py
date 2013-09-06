@@ -54,7 +54,7 @@ def checkSensor():
         avg += (i/float(WINDOW_SIZE))
     
     delta = r-rPast
-    print 'r is %s delta is %s avg is %s'% (r, delta, avg)
+    print 'r is %s delta is %s avg is %s' % (r, delta, avg)
     if r > rMax:
         rMax = r
         # does this merit an emission? Or should delta have to be > threshold?
