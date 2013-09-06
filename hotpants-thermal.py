@@ -3,8 +3,6 @@
 from __future__ import print_function
 import Adafruit_BBIO.UART as uart
 from Adafruit_Thermal import *
-import Adafruit_BBIO.ADC as adc
-import Adafruit_BBIO.GPIO as gpio
 import TMP102 as tmp
 import time
 from serial import Serial
@@ -77,9 +75,11 @@ def checkSensor():
 
 def emit_dream(r, delta, avg):
     printer.print(parseLen(random.choice(preamble)+random.choice(dream)))
+    printer.feed(1)
 
 def emit_remark(r, delta, avg):
     printer.print(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
+    printer.feed(1)
 
 def exit_handler():
     pass
