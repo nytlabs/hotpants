@@ -60,7 +60,7 @@ def checkSensor():
         rMin = r
         # does this merit an emission? Or should delta have to be > threshold?
 
-    delta = r-rPast
+    delta = r-avg
 
     if abs(delta) > emission_threshold:
         noop = 0
