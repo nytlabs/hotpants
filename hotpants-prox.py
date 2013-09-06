@@ -11,10 +11,7 @@ import random
 import atexit
 import VCNL4000 as vcnl
 
-
-uart.setup("UART2")
-# atexit.register(exit_handler)
-
+########### static
 sensor_pin = 'P9_40'
 extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
 mid_lo = ['shady','dim','grey','faint','weak','dim','shadowy','vague','wispy','feeble','light','swooning','light-headed','lightheaded','fainthearted','timid','faint-hearted','cloudy','muddy','murky','turbid']
@@ -22,19 +19,6 @@ mid_hi = ['light','shiny','clear','lustrous','diaphanous','filmy','gauze-like','
 extreme_hi = ['blinding','superbright','brilliant','vivid','brilliant','vivid','smart','burnished','lustrous','shining','shiny','undimmed','promising','sunny','sunshiny']
 
 preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','Well looky here, it is ','Suddenly: ','Call the police, it is ','After awhile: ','Things have changed; now it\'s more ']
-
-v = vcnl.VCNL4000()
-
-printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
-printer.begin()
-printer.upsideDownOn()
-printer.feed(1)
-printer.print('i am awake and i am dreaming')
-printer.feed(1)
-printer.print(parseLen(str(time.ctime())))
-printer.feed(1)
-rPast = 0
-emission_threshold = 100
 
 def parseLen(text):
     L = []
@@ -74,6 +58,21 @@ def exit_handler():
     # print 'exiting'
     # adc.cleanup()
     # uart.cleanup() # not yet supported?
+
+
+v = vcnl.VCNL4000()
+uart.setup("UART2")
+# atexit.register(exit_handler)
+printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
+printer.begin()
+printer.upsideDownOn()
+printer.feed(1)
+printer.print('i am awake and i am dreaming')
+printer.feed(1)
+printer.print(parseLen(str(time.ctime())))
+printer.feed(1)
+rPast = 0
+emission_threshold = 100
 
 while True:
     checkSensor()
