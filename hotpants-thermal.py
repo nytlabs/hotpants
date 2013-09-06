@@ -21,6 +21,7 @@ extreme_lo = ['stale','cold','dusty','moth-eaten','frigid','arctic','gelid','gla
 # extreme_hi = ['blinding','superbright','brilliant','vivid','brilliant','vivid','smart','burnished','lustrous','shining','shiny','undimmed','promising','sunny','sunshiny']
 extreme_hi = ['raging','hot','angry','furious','tempestuous','wild','blistering','acerb','acerbic','acid','acrid','bitter','caustic','sulfurous','sulphurous','virulent','vitriolic','blistery','red-hot','scalding','scathing','venomous','vituperative','juicy','luscious','toothsome','voluptuous','sizzling','live','unrecorded','bouncy','lively','resilient','springy','alive']
 preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','Well looky here, it is ','Suddenly: ','Call the police, it is ','After awhile: ','Things have changed; now it\'s more ','Hey now! It is very ']
+dream = ['this is a dream', 'this is a nightmare']
 
 def parseLen(text):
     L = []
@@ -46,12 +47,14 @@ def checkSensor():
     global noop
     # change this to whatever get-readings call we need
     r = t.getTemp()
-    print r
     readings.append(r)
+    
     avg = 0
     for i in readings[-WINDOW_SIZE:]:
         avg += (i/float(WINDOW_SIZE))
     
+    delta = r-rPast
+    print 'r is %s delta is %s avg is %s' % (r, delta, avg)
     if r > rMax:
         rMax = r
         # does this merit an emission? Or should delta have to be > threshold?
@@ -76,7 +79,7 @@ def emit_dream(r, delta, avg):
     printer.print(parseLen(random.choice(preamble)+random.choice(dream)))
 
 def emit_remark(r, delta, avg):
-    pass
+    printer.print(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
 
 def exit_handler():
     pass
