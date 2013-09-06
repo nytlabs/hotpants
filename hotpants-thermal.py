@@ -19,7 +19,7 @@ extreme_lo = ['stale','cold','dusty','moth-eaten','frigid','arctic','gelid','gla
 # extreme_hi = ['blinding','superbright','brilliant','vivid','brilliant','vivid','smart','burnished','lustrous','shining','shiny','undimmed','promising','sunny','sunshiny']
 extreme_hi = ['raging','hot','angry','furious','tempestuous','wild','blistering','acerb','acerbic','acid','acrid','bitter','caustic','sulfurous','sulphurous','virulent','vitriolic','blistery','red-hot','scalding','scathing','venomous','vituperative','juicy','luscious','toothsome','voluptuous','sizzling','live','unrecorded','bouncy','lively','resilient','springy','alive']
 preamble = ['Now it is hella ','Oh, just a bit ','It is quite ','Gosh it is ','Well looky here, it is ','Suddenly: ','Call the police, it is ','After awhile: ','Things have changed; now it\'s more ','Hey now! It is very ']
-dream = ['this is a dream', 'this is a nightmare']
+dream = ['i am falling', 'i am walking and falling', 'i had to take a test', 'i have eaten an embarrassing amount of gum']
 
 def parseLen(text):
     L = []
@@ -74,7 +74,7 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
-    printer.print(parseLen(random.choice(preamble)+random.choice(dream)))
+    printer.print(parseLen('A DREAM: '+random.choice(dream)))
     printer.feed(1)
 
 def emit_remark(r, delta, avg):
