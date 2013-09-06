@@ -46,6 +46,7 @@ def checkSensor():
     global noop
     # change this to whatever get-readings call we need
     r = t.getTemp()
+    print r
     readings.append(r)
     avg = 0
     for i in readings[-WINDOW_SIZE:]:
