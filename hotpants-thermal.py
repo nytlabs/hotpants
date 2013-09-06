@@ -92,7 +92,7 @@ printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
 printer.upsideDownOn()
 printer.feed(3)
-printer.print("o hai")
+printer.print('i am awake and I have a TMP102')
 printer.feed(1)
 rPast = 0
 rMax = 0 # all-time max sensor reading
