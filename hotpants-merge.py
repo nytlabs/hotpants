@@ -66,16 +66,15 @@ def checkSensor():
         rMin = r
         # does this merit an emission? Or should delta have to be > threshold?
 
-    delta = r-avg
-
     if abs(delta) > emission_threshold:
+        print('emitting remark')
         noop = 0
-        # emit a message
         emit_remark(r, delta, avg)
     else:
         noop += 1
         if noop > noop_threshold:
             noop = 0
+            print('emitting remark')
             emit_dream(r, delta, avg)
     rPast = r
 
