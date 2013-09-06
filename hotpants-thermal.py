@@ -52,14 +52,14 @@ def checkSensor():
     avg = 0
     for i in readings[-WINDOW_SIZE:]:
         avg += (i/float(WINDOW_SIZE))
-    
+
     delta = r-rPast
     # print 'r %s delta %s avg %s' % (r, delta, avg)
-    print 'r:',r
+    print 'r ',r
     print '\n'
-    print 'delta:',delta
+    print 'delta ',delta
     print '\n'
-    print 'avg:',avg
+    print 'avg ',avg
     print '\n'
     if r > rMax:
         rMax = r
