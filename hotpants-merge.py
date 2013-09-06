@@ -102,6 +102,7 @@ def exit_handler():
 
 def mapVals(val, inMin, inMax, outMin, outMax):
         toRet = outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin))
+        return toRet
 
 uart.setup("UART2")
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
