@@ -99,7 +99,8 @@ def exit_handler():
     # print 'exiting'
     # adc.cleanup()
     # uart.cleanup() # not yet supported?
-def mapVals(self, val, inMin, inMax, outMin, outMax):
+
+def mapVals(val, inMin, inMax, outMin, outMax):
         toRet = outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin))
 
 uart.setup("UART2")
