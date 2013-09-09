@@ -76,7 +76,7 @@ def checkSensor():
         noop += 1
         if noop > noop_threshold:
             noop = 0
-            print('emitting remark')
+            print('emitting dream')
             emit_dream(r, delta, avg)
     rPast = r
 

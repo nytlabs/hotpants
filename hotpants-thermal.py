@@ -103,8 +103,8 @@ rMax = 0 # all-time max sensor reading
 rMin = 0 # all-time min sensor reading
 WINDOW_SIZE = 30 # size of moving-window avg
 noop = 0 # number of intervals passed without a trigger
-noop_threshold = 480
-emission_threshold = 0.7
+noop_threshold = 480*2
+emission_threshold = 1.0
 
 while True:
     checkSensor()
