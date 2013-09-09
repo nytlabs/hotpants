@@ -41,6 +41,11 @@ def parseLen(text):
         L.append(text)
     return ''.join(L)
 
+def slowPrint(text):
+    for i in text.splitlines():
+        printer.print(i)
+        time.sleep(0.1)
+
 def checkSensor():
     global rPast
     global rMin
@@ -83,19 +88,19 @@ def checkSensor():
 def emit_dream(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 0.0, 0.999)
     sen = sg.generate(theObj, norm, delta, True)
-    printer.print(parseLen(sen))
+    slowPrint(parseLen(sen))
     printer.feed(1)
-    printer.print(parseLen(str(time.ctime())))
+    slowPrint(parseLen(str(time.ctime())))
     printer.feed(1)
-    # printer.print(parseLen('A DREAM: '+random.choice(dream)))
+    # slowPrint(parseLen('A DREAM: '+random.choice(dream)))
     # printer.feed(1)
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 0.0, 0.999)
     sen = sg.generate(theObj, norm, delta, False)
-    printer.print(parseLen(sen))
+    slowPrint(parseLen(sen))
     printer.feed(1)
-    # printer.print(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
+    # slowPrint(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
     # printer.feed(1)
 
 def exit_handler():
