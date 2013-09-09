@@ -43,7 +43,7 @@ def parseLen(text):
 
 def slowPrint(text):
     for i in text.splitlines():
-        printer.print(i)
+        printer.print(i+'\n')
         time.sleep(0.1)
 
 def checkSensor():
