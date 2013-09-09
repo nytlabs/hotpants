@@ -8,7 +8,7 @@ data = {
 
 				[
 
-				{"string": "It is MOD DESC", "type": 0}, {"string": "Oh, it's MOD DESC", "type": 0}, {"string": "Gosh, that's MOD DESC", "type": 0}, {"string": "MOD DESC now", "type": 0}, {"string": "Well, that's MOD DESC", "type": 0}, {"string": "I am MOD DESC", "type": 1}, {"string": "Am I DESC?", "type": 2}, {"string": "Is it DESC?", "type": 3}
+				{"string": "It is MOD DESC", "type": 0}, {"string": "This light is MOD DESC", "type": 0}, {"string": "Oh, it's MOD DESC", "type": 0}, {"string": "Oh, that's MOD DESC", "type": 0}, {"string": "MOD DESC now", "type": 0}, {"string": "Well, that's MOD DESC", "type": 0}, {"string": "I am MOD DESC", "type": 1}, {"string": "Am I DESC?", "type": 2}, {"string": "Is it DESC?", "type": 3}, {"string": "Well now I'm MOD DESC", "type": 4}, {"string": "My skin is MOD DESC", "type": 4}, {"string": "I feel DESC me", "type": 5}
 
 				]
 
@@ -18,7 +18,7 @@ data = {
 
 				[
 
-				["light", 0, lambda m: m > 0.5 and m < 1.0], ["bright", 0, lambda m: m > 0.6 and m < 1.0], ["beaming", 0, lambda m: m > 0.8 and m < 1.0], ["dark", 0, lambda m: m > 0.0 and m < 0.5], ["murky", 0, lambda m: m > 0.0 and m < 0.5], ["shadowy", 0, lambda m: m > 0.0 and m < 0.5], ["basking", 1, lambda m: m > 0.5 and m < 1.0], ["shaded", 1, lambda m: m > 0.0 and m < 0.5], ["ripening", 1, lambda m: m > 0.5 and m < 1.0], ["ripe", 2, lambda m: m > 0.0 and m < 1.0], ["night", 3, lambda m: m > 0.0 and m < 0.5], ["daytime", 3, lambda m: m > 0.5 and m < 1.0], ["bathed in light", 4, lambda m: m > 0.5 and m < 1.0], ["illuminated", 4, lambda m: m > 0.6 and m < 1.0]
+				["light", 0, lambda m: m > 0.5 and m < 1.0], ["bright", 0, lambda m: m > 0.6 and m < 1.0], ["beaming", 0, lambda m: m > 0.8 and m < 1.0], ["dark", 0, lambda m: m > 0.0 and m < 0.5], ["murky", 0, lambda m: m > 0.0 and m < 0.5], ["shadowy", 0, lambda m: m > 0.0 and m < 0.5], ["basking", 1, lambda m: m > 0.5 and m < 1.0], ["shaded", 1, lambda m: m > 0.0 and m < 0.5], ["ripening", 1, lambda m: m > 0.5 and m < 1.0], ["ripe", 2, lambda m: m > 0.0 and m < 1.0], ["night", 3, lambda m: m > 0.0 and m < 0.5], ["daytime", 3, lambda m: m > 0.5 and m < 1.0], ["bathed in light", 4, lambda m: m > 0.5 and m < 1.0], ["illuminated", 4, lambda m: m > 0.6 and m < 1.0], ["red", 4, lambda m: m > 0.0 and m < 1.0] , ["light shining on", 5, lambda m: m > 0.5 and m < 1.0], ["shadow falling on", 5, lambda m: m > 0.5 and m < 1.0] 
 
 				]
 
@@ -29,7 +29,7 @@ data = {
 
 				[
 
-				{"string": "It is MOD DESC", "type": 0}, {"string": "It is MOD DESC now, would you like some DRINK?", "type": 0}, {"string": "Oh, it's getting MOD DESC. Might be time for DRINK.", "type": 0}, {"string": "Aren't you MOD DESC now? Some DRINK might be a good idea.", "type": 0}
+				{"string": "It is MOD DESC", "type": 0}, {"string": "It is MOD DESC now, would you like some DRINK?", "type": 0}, {"string": "Oh, it's getting MOD DESC. Might be time for DRINK.", "type": 0}, {"string": "Aren't you MOD DESC now? Some DRINK might be a good idea.", "type": 0}, {"string": "Sure is MOD DESC. Why don't you pour youself a cup of DRINK?", "type": 0}
 
 				]
 
@@ -76,7 +76,7 @@ data = {
 
 				[
 
-					["a tiny bit", lambda m: m > 0.0 and m < 0.2], ["a bit", lambda m: m > 0.0 and m < 0.5], ["a little", lambda m: m > 0.0 and m < 0.5], ["quite", lambda m: m > 0.5 and m < 1.0], ["very", lambda m: m > 0.5 and m < 1.0], ["extremely", lambda m: m > 0.8 and m < 1.0], ["somewhat", lambda m: m > 0.3 and m < 0.6], ["fairly", lambda m: m > 0.3 and m < 0.6], ["rather", lambda m: m > 0.5 and m < 0.7]
+					["a tiny bit", lambda m: m > 0.0 and m < 0.2], ["a bit", lambda m: m > 0.0 and m < 0.5], ["a little", lambda m: m > 0.0 and m < 0.5], ["quite", lambda m: m > 0.5 and m < 1.0], ["very", lambda m: m > 0.5 and m < 1.0], ["extremely", lambda m: m > 0.8 and m < 1.0], ["fiercely", lambda m: m > 0.8 and m < 1.0], ["somewhat", lambda m: m > 0.3 and m < 0.6], ["fairly", lambda m: m > 0.3 and m < 0.6], ["rather", lambda m: m > 0.5 and m < 0.7]
 
 				]
 }
@@ -127,3 +127,7 @@ def generate(obj, reading, diff, dream=False):
 
 ### EXAMPLE ###
 # sentence = generate("BLOCKS", random.random(), random.random())
+
+sentence = generate("APPLE", random.random(), random.random())
+print sentence
+
