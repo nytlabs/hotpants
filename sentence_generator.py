@@ -105,18 +105,18 @@ def generate(obj, reading, diff, dream=False):
 	print 'received %s %s %s %s' % (obj, reading, diff, dream)
 
 	if dream==True:
-		output = data[obj]["dreams"][random.randint(0,len(data[obj]["dreams"])-1)]
+		output = data[obj]["dreams"][random.choice(data[obj]["dreams"])]
 		return output
 
 	else:
-		sentence = data[obj]["sentences"][random.randint(0,len(data[obj]["sentences"])-1)]
+		sentence = data[obj]["sentences"][random.choice(data[obj]["sentences"])]
 		type = sentence["type"]
 		descriptor = None
 		modifier = ""
 
 
 		while descriptor is None:
-			d = data[obj]["descriptors"][random.randint(0,len(data[obj]["descriptors"])-1)]
+			d = data[obj]["descriptors"][random.choice(data[obj]["descriptors"])]
 			if d[1] == type:
 				if d[2](reading):
 					descriptor = d[0]
@@ -124,14 +124,14 @@ def generate(obj, reading, diff, dream=False):
 		if obj == "APPLE" or obj == "MUG":
 			if random.random() > 0.5:
 				while modifier is "":
-					m = data["modifiers"][random.randint(0,len(data["modifiers"])-1)]
+					m = data["modifiers"][random.choice(data["modifiers"])]
 					if m[1](reading):
 						modifier = m[0]
 
 		if obj == "MUG":
 			drink = None
 			while drink is None:
-				d = data[obj]["drinks"][random.randint(0,len(data[obj]["drinks"])-1)]
+				d = data[obj]["drinks"][random.choice(data[obj]["drinks"])]
 				if d[1](reading):
 					drink = d[0]
 			output = sentence["string"].replace("DESC", descriptor).replace("MOD", modifier).replace("DRINK", drink).lstrip()
