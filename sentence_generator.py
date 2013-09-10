@@ -128,6 +128,6 @@ def generate(obj, reading, diff, dream=False):
 ### EXAMPLE ###
 # sentence = generate("BLOCKS", random.random(), random.random())
 
-sentence = generate("APPLE", random.random(), random.random())
-print sentence
+# sentence = generate("APPLE", random.random(), random.random())
+# print sentence
 
