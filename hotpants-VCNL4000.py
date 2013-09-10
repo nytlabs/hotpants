@@ -3,13 +3,17 @@
 from __future__ import print_function
 import Adafruit_BBIO.UART as uart
 from Adafruit_Thermal import *
-import TMP102 as tmp
+# import TMP102 as tmp
+import VCNL4000 as vcnl
 import time
 from serial import Serial
 import random
 import atexit
+import sentence_generator as sg
 
-t = tmp.TMP102()
+theObj = 'BLOCKS'
+
+v = vcnl.VCNL4000()
 readings = []
 sensor_pin = 'P9_40'
 # extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
@@ -38,13 +42,18 @@ def parseLen(text):
         L.append(text)
     return ''.join(L)
 
+def slowPrint(text):
+    for i in text.splitlines():
+        printer.print(i+'\n')
+        time.sleep(0.1)
+
 def checkSensor():
     global rPast
     global rMin
     global rMax
     global noop
     # change this to whatever get-readings call we need
-    r = t.getTemp()
+    r = v.getProximity()
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
         del readings[:-WINDOW_SIZE]
@@ -54,7 +63,9 @@ def checkSensor():
         avg += (i/float(WINDOW_SIZE))
 
     delta = r-avg
-    print (r, delta, avg)
+
+    print(r, delta, avg)
+    
     if r > rMax:
         rMax = r
         # does this merit an emission? Or should delta have to be > threshold?
@@ -62,34 +73,48 @@ def checkSensor():
         rMin = r
         # does this merit an emission? Or should delta have to be > threshold?
 
-    delta = r-avg
-
     if abs(delta) > emission_threshold:
-        noop = 0
-        # emit a message
-        emit_remark(r, delta, avg)
+        if len(readings)==WINDOW_SIZE:
+            print('emitting remark')
+            noop = 0
+            emit_remark(r, delta, avg)
+        else:
+            pass
     else:
         noop += 1
         if noop > noop_threshold:
             noop = 0
+            print('emitting dream')
             emit_dream(r, delta, avg)
     rPast = r
 
 def emit_dream(r, delta, avg):
-    printer.print(parseLen(str(time.ctime())))
+    norm = mapVals(r,rMin, rMax, 0.0, 0.999)
+    sen = sg.generate(theObj, norm, delta, True)
+    slowPrint(parseLen(sen))
     printer.feed(1)
-    printer.print(parseLen('A DREAM: '+random.choice(dream)))
+    slowPrint(parseLen('A DREAM: '+str(time.ctime())))
     printer.feed(1)
+    # slowPrint(parseLen('A DREAM: '+random.choice(dream)))
+    # printer.feed(1)
 
 def emit_remark(r, delta, avg):
-    printer.print(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
+    norm = mapVals(r,rMin, rMax, 0.0, 0.999)
+    sen = sg.generate(theObj, norm, delta, False)
+    slowPrint(parseLen(sen))
     printer.feed(1)
+    # slowPrint(parseLen(random.choice(preamble)+random.choice(extreme_hi)))
+    # printer.feed(1)
 
 def exit_handler():
     pass
     # print 'exiting'
     # adc.cleanup()
     # uart.cleanup() # not yet supported?
+
+def mapVals(val, inMin, inMax, outMin, outMax):
+        toRet = outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin))
+        return toRet
 
 uart.setup("UART2")
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
@@ -103,8 +128,8 @@ rMax = 0 # all-time max sensor reading
 rMin = 0 # all-time min sensor reading
 WINDOW_SIZE = 30 # size of moving-window avg
 noop = 0 # number of intervals passed without a trigger
-noop_threshold = 480*2
-emission_threshold = 1.0
+noop_threshold = 480
+emission_threshold = 0.7
 
 while True:
     checkSensor()

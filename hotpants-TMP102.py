@@ -3,17 +3,16 @@
 from __future__ import print_function
 import Adafruit_BBIO.UART as uart
 from Adafruit_Thermal import *
-# import TMP102 as tmp
-import VCNL4000 as vcnl
+import TMP102 as tmp
 import time
 from serial import Serial
 import random
 import atexit
 import sentence_generator as sg
 
-theObj = 'BLOCKS'
+theObj = 'MUG'
 
-v = vcnl.VCNL4000()
+t = tmp.TMP102()
 readings = []
 sensor_pin = 'P9_40'
 # extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
@@ -53,7 +52,7 @@ def checkSensor():
     global rMax
     global noop
     # change this to whatever get-readings call we need
-    r = v.getProximity()
+    r = t.getTemp()
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
         del readings[:-WINDOW_SIZE]
@@ -63,7 +62,7 @@ def checkSensor():
         avg += (i/float(WINDOW_SIZE))
 
     delta = r-avg
-
+    
     print(r, delta, avg)
     
     if r > rMax:
