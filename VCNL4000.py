@@ -89,7 +89,9 @@ class VCNL4000():
     while True:
       result = self.i2c.readU8(self.VCNL4000_COMMAND)
       if(result & self.VCNL4000_PROXIMITYREADY):
-        return self.i2c.readU16(self.VCNL4000_PROXIMITYDATA)
+        h = self.i2c.readList(self.VCNL4000_PROXIMITYDATA,2)
+        result = ((h[0]<<8)|h[1])>>4
+        return result
       time.sleep(0.001)
 
   def readAmbient(self):
@@ -97,5 +99,7 @@ class VCNL4000():
     while True:
       result = self.i2c.readU8(self.VCNL4000_COMMAND)
       if(result & self.VCNL4000_AMBIENTREADY):
-        return self.i2c.readU16(self.VCNL4000_AMBIENTDATA)
+        h = self.i2c.readList(self.VCNL4000_AMBIENTDATA,2)
+        result = ((h[0]<<8)|h[1])>>4
+        return result
       time.sleep(0.001)
