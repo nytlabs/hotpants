@@ -145,7 +145,9 @@ def generate(obj, reading, diff, dream=False):
 			else:
 				output = sentence["string"].lstrip()
 
+		print 'returning %s'%(output[0].upper() + output[1:])
 		return output[0].upper() + output[1:]
+
 
 
 ### EXAMPLE ###
