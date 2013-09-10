@@ -14,6 +14,7 @@ import sentence_generator as sg
 theObj = 'BLOCKS'
 
 v = vcnl.VCNL4000()
+v.continuousConversionOn()
 readings = []
 sensor_pin = 'P9_40'
 # extreme_lo = ['dark','inky','shadowed','midnight''black','sinister','dour','glowering','glum','moody','morose','saturnine','sour','sullen','benighted','obscure','blue','dingy','disconsolate','dismal','gloomy','grim','sorry','drab','drear','dreary','colored','coloured','dark-skinned','non-white','depressing','dispiriting']
