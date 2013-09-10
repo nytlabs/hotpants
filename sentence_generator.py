@@ -110,6 +110,7 @@ def generate(obj, reading, diff, dream=False):
 
 	else:
 		sentence = random.choice(data[obj]["sentences"])
+		print sentence
 		type = sentence["type"]
 		descriptor = None
 		modifier = ""
@@ -120,8 +121,6 @@ def generate(obj, reading, diff, dream=False):
 			if d[1] == type:
 				if d[2](reading):
 					descriptor = d[0]
-			else:
-				print d[1]
 
 		if obj == "APPLE" or obj == "MUG":
 			if random.random() > 0.5:
