@@ -112,6 +112,7 @@ def generate(obj, reading, diff, dream=False):
 		sentence = random.choice(data[obj]["sentences"])
 		print sentence
 		type = sentence["type"]
+		print type
 		descriptor = None
 		modifier = ""
 
