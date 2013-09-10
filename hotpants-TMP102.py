@@ -92,8 +92,8 @@ def emit_dream(r, delta, avg):
     sen = sg.generate(theObj, norm, delta, True)
     slowPrint(parseLen(sen))
     printer.feed(1)
-    slowPrint(parseLen('DREAM: '+str(time.ctime())))
-    printer.feed(1)
+    slowPrint(parseLen('DREAM: '+str(time.ctime()))+'\n')
+    # printer.feed(1)
     # slowPrint(parseLen('A DREAM: '+random.choice(dream)))
     # printer.feed(1)
 
