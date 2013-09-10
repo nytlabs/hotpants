@@ -53,7 +53,7 @@ def checkSensor():
     global rMax
     global noop
     # change this to whatever get-readings call we need
-    r = v.getProximity()
+    r = v.readProximity()
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
         del readings[:-WINDOW_SIZE]
