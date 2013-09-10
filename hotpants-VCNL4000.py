@@ -60,8 +60,8 @@ def checkSensor():
         del readings[:-WINDOW_SIZE]
     
     avg = 0
-    for i in readings[-WINDOW_SIZE:]:
-        avg += (i/float(WINDOW_SIZE))
+    for i in readings:
+        avg += (i/float(len(readings)))
 
     delta = r-rPast
     # delta = r-avg
@@ -131,7 +131,7 @@ rMin = 0 # all-time min sensor reading
 WINDOW_SIZE = 30 # size of moving-window avg
 noop = 0 # number of intervals passed without a trigger
 noop_threshold = 480
-emission_threshold = 0.7
+emission_threshold = 5 # changed this for vcnl4000, used to be 0.7
 
 while True:
     checkSensor()
