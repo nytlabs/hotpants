@@ -117,6 +117,7 @@ def generate(obj, reading, diff, dream=False):
 
 		while descriptor is None:
 			d = random.choice(data[obj]["descriptors"])
+			print d
 			if d[1] == type:
 				if d[2](reading):
 					descriptor = d[0]
