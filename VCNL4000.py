@@ -92,7 +92,8 @@ class VCNL4000():
         h = self.i2c.readList(self.VCNL4000_PROXIMITYDATA,2)
         result = ((h[0]<<8)|h[1])>>4
         return result
-      time.sleep(0.001)
+      # time.sleep(0.001)
+      time.sleep(0.002)
 
   def readAmbient(self):
     self.i2c.write8(self.VCNL4000_COMMAND, self.VCNL4000_MEASUREAMBIENT)
@@ -102,4 +103,5 @@ class VCNL4000():
         h = self.i2c.readList(self.VCNL4000_AMBIENTDATA,2)
         result = ((h[0]<<8)|h[1])>>4
         return result
-      time.sleep(0.001)
+      # time.sleep(0.001)
+      time.sleep(0.002)
