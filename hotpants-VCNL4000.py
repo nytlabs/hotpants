@@ -63,7 +63,8 @@ def checkSensor():
     for i in readings[-WINDOW_SIZE:]:
         avg += (i/float(WINDOW_SIZE))
 
-    delta = r-avg
+    delta = r-rPast
+    # delta = r-avg
 
     print(r, delta, avg)
     
@@ -75,7 +76,7 @@ def checkSensor():
         # does this merit an emission? Or should delta have to be > threshold?
 
     if abs(delta) > emission_threshold:
-        if len(readings)==WINDOW_SIZE:
+        if len(readings)==WINDOW_SIZE: # this test prevents emissions before WINDOW_SIZE samples have been taken
             print('emitting remark')
             noop = 0
             emit_remark(r, delta, avg)
