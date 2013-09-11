@@ -66,7 +66,7 @@ def checkSensor():
     delta = r-rPast
     # delta = r-avg
 
-    print(r, delta, avg, rMin, rMax)
+    print('\t'.join((r, delta, avg, rMin, rMax))
     
     if r > rMax:
         rMax = r
