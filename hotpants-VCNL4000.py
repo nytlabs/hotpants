@@ -92,16 +92,18 @@ def checkSensor():
 
 def emit_dream(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 1.0, 0.0) # reversed this because for vcnl4000, hi means close
-    sen = sg.generate(theObj, norm, delta, True)
-    slowPrint(parseLen(sen))
+    # sen = sg.generate(theObj, norm, delta, True)
+    # slowPrint(parseLen(sen))
+    slowPrint(norm)
     printer.feed(1)
     slowPrint(parseLen('DREAM: '+str(time.ctime())))
     printer.feed(1)
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 1.0, 0.0)
-    sen = sg.generate(theObj, norm, delta, False)
-    slowPrint(parseLen(sen))
+    # sen = sg.generate(theObj, norm, delta, False)
+    # slowPrint(parseLen(sen))
+    slowPrint(norm)
     printer.feed(1)
 
 def exit_handler():
