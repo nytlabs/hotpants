@@ -123,7 +123,7 @@ printer.print('i am awake and I have a VCNL4000')
 printer.feed(1)
 rPast = 0
 rMax = 0 # all-time max sensor reading
-rMin = 0 # all-time min sensor reading
+rMin = 100000 # all-time min sensor reading
 WINDOW_SIZE = 30 # size of moving-window avg
 noop = 0 # number of intervals passed without a trigger
 noop_threshold = 480
