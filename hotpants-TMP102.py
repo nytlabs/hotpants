@@ -91,14 +91,14 @@ def emit_dream(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 0.0, 0.999)
     sen = sg.generate(theObj, norm, delta, True)
     slowPrint(parseLen(sen))
-    printer.feed(1)
+    printer.feed(2)
     slowPrint(parseLen('DREAM: '+str(time.ctime()))+'\n')
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 0.0, 0.999)
     sen = sg.generate(theObj, norm, delta, False)
     slowPrint(parseLen(sen))
-    printer.feed(1)
+    printer.feed(2)
 
 def exit_handler():
     pass
@@ -107,7 +107,7 @@ def exit_handler():
     # uart.cleanup() # not yet supported?
 
 def mapVals(val, inMin, inMax, outMin, outMax):
-        toRet = outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin))
+        toRet = float(outMin + float(outMax - outMin) * float(float(val - inMin) / float(inMax - inMin)))
         return toRet
 
 uart.setup("UART2")

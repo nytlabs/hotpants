@@ -97,14 +97,14 @@ def emit_dream(r, delta, avg):
     # slowPrint(str(norm))
     printer.feed(1)
     slowPrint(parseLen('DREAM: '+str(time.ctime())))
-    printer.feed(1)
+    printer.feed(2)
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 1.0, 0.0)
     sen = sg.generate(theObj, norm, delta, False)
     slowPrint(parseLen(sen))
     # slowPrint(str(norm))
-    printer.feed(1)
+    printer.feed(2)
 
 def exit_handler():
     pass
