@@ -111,7 +111,8 @@ def exit_handler():
     # uart.cleanup() # not yet supported?
 
 def mapVals(val, inMin, inMax, outMin, outMax):
-        toRet = outMin + (outMax - outMin) * ((val - inMin) / (inMax - inMin))
+        toRet = outMin + ((outMax - outMin) * ((val - inMin) / (inMax - inMin)))
+        # shall we clamp values?
         return toRet
 
 uart.setup("UART2")
