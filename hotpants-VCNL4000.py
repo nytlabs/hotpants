@@ -105,8 +105,15 @@ def exit_handler():
 
 def mapVals(val, inMin, inMax, outMin, outMax):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
-        # shall we clamp values?
-        return toRet
+        return clamp(toRet, outMin, outMax)
+
+def clamp(val, tmin, tmax):
+    if val > tmax:
+        val = tmax
+    if vasl < tmin:
+        val = tmin
+    return val
+
 
 uart.setup("UART2")
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
