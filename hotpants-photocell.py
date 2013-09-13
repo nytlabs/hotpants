@@ -14,8 +14,6 @@ import sentence_generator as sg
 
 theObj = 'BLOCKS'
 sensor_pin = 'P9_40'
-v = vcnl.VCNL4000()
-v.continuousConversionOn()
 readings = []
 
 def parseLen(text):
