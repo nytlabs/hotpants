@@ -98,7 +98,7 @@ def emit_remark(r, delta, avg):
 
 def exit_handler():
     print('exiting')
-    adc.cleanup()
+    # adc.cleanup()
     # uart.cleanup() # not yet supported?
 
 def mapVals(val, inMin, inMax, outMin, outMax):
