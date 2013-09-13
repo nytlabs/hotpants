@@ -110,7 +110,7 @@ def mapVals(val, inMin, inMax, outMin, outMax):
 def clamp(val, tmin, tmax):
     if val > tmax:
         val = tmax
-    if vasl < tmin:
+    if val < tmin:
         val = tmin
     return val
 

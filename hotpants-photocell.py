@@ -12,7 +12,7 @@ import random
 import atexit
 import sentence_generator as sg
 
-theObj = 'BLOCKS'
+theObj = 'APPLE'
 sensor_pin = 'P9_40'
 readings = []
 
@@ -108,7 +108,7 @@ def mapVals(val, inMin, inMax, outMin, outMax):
 def clamp(val, tmin, tmax):
     if val > tmax:
         val = tmax
-    if vasl < tmin:
+    if val < tmin:
         val = tmin
     return val
 
