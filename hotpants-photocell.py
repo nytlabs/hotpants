@@ -56,7 +56,7 @@ def checkSensor():
     delta = r-rPast
     # delta = r-avg
 
-    print(r, delta, avg, rMin, rMax)
+    # print(r, delta, avg, rMin, rMax)
     
     if r > rMax:
         rMax = r
@@ -67,7 +67,7 @@ def checkSensor():
 
     if abs(delta) > emission_threshold:
         if len(readings)==WINDOW_SIZE: # this test prevents emissions before WINDOW_SIZE samples have been taken
-            print('emitting remark')
+            # print('emitting remark')
             noop = 0
             emit_remark(r, delta, avg)
         else:
@@ -76,7 +76,7 @@ def checkSensor():
         noop += 1
         if noop > noop_threshold:
             noop = 0
-            print('emitting dream')
+            # print('emitting dream')
             emit_dream(r, delta, avg)
     rPast = r
 
