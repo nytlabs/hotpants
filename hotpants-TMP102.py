@@ -18,6 +18,8 @@ theObj = 'MUG'
 humanCold = 20
 humanHot = 30
 
+fake = 0
+
 t = tmp.TMP102()
 readings = []
 
@@ -85,10 +87,12 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
-    r = random.randint(0,5)
-    if r==1:
-        emit_remark(r, delta, avg)
+    global fake
+    if fake == 5:
+        fake = 0
+        emit_remark(r,delta,avg)
     else:
+        fake += 1
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
         slowPrint(parseLen(sen))
