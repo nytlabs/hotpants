@@ -110,17 +110,19 @@ def emit_dream(r, delta, avg):
         
         printer.flush()
         printer.feed(1)
-        for i in xrange(Adafruit_Thermal.maxColumn):
-            printer.writeBytes(0xC4)
-        printer.flush()
-
+        # for i in xrange(Adafruit_Thermal.maxColumn):
+        #     printer.writeBytes(0xB0)
+        # printer.flush()
+        printer.print('            . . .             ')
+        
         slowPrint(parse(sen))
         
         printer.flush()
         printer.feed(1)
-        for i in xrange(Adafruit_Thermal.maxColumn):
-            printer.writeBytes(0xC4)
-        printer.flush()
+        # for i in xrange(Adafruit_Thermal.maxColumn):
+        #     printer.writeBytes(0xB0)
+        # printer.flush()
+        printer.print('            . . .             ')
 
         printer.feed(2)
     else:
