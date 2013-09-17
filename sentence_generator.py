@@ -35,7 +35,7 @@ data = {
 
 				[
 
-				{"string": "It is MOD DESC", "type": 0}, {"string": "It is MOD DESC now, would you like some DRINK?", "type": 0}, {"string": "Oh, it's getting MOD DESC. Might be time for DRINK.", "type": 0}, {"string": "Aren't you MOD DESC now? Some DRINK might be a good idea.", "type": 0}, {"string": "Sure is MOD DESC. Why don't you pour youself a cup of DRINK?", "type": 0}
+				{"string": "It is MOD DESC", "type": 0}, {"string": "It is MOD DESC now, would you like some DRINK?", "type": 0}, {"string": "Oh, it's getting MOD DESC. Might be time for DRINK.", "type": 0}, {"string": "Aren't you MOD DESC now? Some DRINK might be a good idea.", "type": 0}, {"string": "Sure is MOD DESC. Why don't you pour yourself a cup of DRINK?", "type": 0}
 
 				]
 
@@ -144,7 +144,7 @@ def generate(obj, reading, diff, dream=False):
 			else:
 				output = sentence["string"].lstrip()
 
-		print 'returning %s'%(output[0].upper() + output[1:])
+		# print 'returning %s'%(output[0].upper() + output[1:])
 		return output[0].upper() + output[1:]
 
 

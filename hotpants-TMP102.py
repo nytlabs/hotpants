@@ -92,9 +92,9 @@ def emit_dream(r, delta, avg):
         fake = 0
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
+        
         slowPrint(parseLen(sen))
         printer.feed(2)
-        slowPrint(parseLen(str(time.ctime()))+'\n')
     else:
         fake += 1
         emit_remark(r,delta,avg)
