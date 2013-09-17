@@ -40,7 +40,7 @@ def parse(text):
     fin = []
     tally = 0
     for w in r:
-        if len(w)+len(curLine) > (maxCol-1):
+        if len(w)+len(curLine) > (Adafruit_Thermal.maxColumn-1):
             fin.append(curLine)
             curLine = ''
             curLine+=w
