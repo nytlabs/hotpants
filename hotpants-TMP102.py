@@ -97,7 +97,6 @@ def checkSensor():
 
     if abs(delta) > emission_threshold:
         if len(readings)==WINDOW_SIZE:
-            # print('emitting remark')
             noop = 0
             emit_remark(r, delta, avg)
         else:
@@ -133,10 +132,10 @@ def emit_dream(r, delta, avg):
         emit_remark(r,delta,avg)
 
 def emit_remark(r, delta, avg):
-    print(delta)
     global crescent
     global choke
     global rPast
+    print(r-rPast)
     if r-rPast < 0:
         if crescent > choke:
             crescent = 0
