@@ -22,8 +22,8 @@ t = tmp.TMP102()
 readings = []
 fake = 0
 recent = False
-crescent = 20
-choke = 20
+crescent = 5
+choke = 5
 
 def parseLen(text):
     L = []
