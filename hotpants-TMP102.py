@@ -16,7 +16,7 @@ import sentence_generator as sg
 theObj = 'MUG'
 
 humanCold = 20
-humanHot = 30
+humanHot = 32.5
 
 t = tmp.TMP102()
 readings = []
