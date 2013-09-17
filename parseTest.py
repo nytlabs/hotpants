@@ -19,4 +19,5 @@ def parse(text):
     	else:
     		curLine+=' '+w
     print curLine
+    fin.append(curLine)
     print fin
