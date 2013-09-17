@@ -23,7 +23,7 @@ readings = []
 fake = 0
 recent = False
 crescent = 5 # this counter gets incremented everytime we sample; it gets reset when we emit a remark
-choke = 5 # this is a threshold level - until we've ignored choke number 
+choke = 5 # this is a threshold level - until we've ignored choke number of emissions, we don't emit
 
 def parseLen(text):
     L = []
