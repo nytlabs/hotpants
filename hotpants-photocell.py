@@ -23,6 +23,7 @@ def parseLen(text):
     # "call the police, it is faint-hearted" should be printed as
     # "rted" then linebreak then "Call the police, it is faint-hea"
     # which is "rted\nCall the police, it is faint-hea"
+    # "faint-hearted\nCall the police, it is"
 
     if len(text) > Adafruit_Thermal.maxColumn: # 32 is defined by the printer; max chars per line
         r = len(text)%32
@@ -32,6 +33,25 @@ def parseLen(text):
     else:
         L.append(text)
     return ''.join(L)
+
+def parse(text):
+    r = text.split(' ')
+    curLine = ''
+    fin = []
+    tally = 0
+    for w in r:
+        if len(w)+len(curLine) > (maxCol-1):
+            fin.append(curLine)
+            curLine = ''
+            curLine+=w
+        else:
+            curLine+=' '+w
+    # print curLine
+    fin.append(curLine)
+    fin[0] = fin[0].lstrip()
+    fin.reverse()
+    rt = '\n'.join(fin)
+    return rt+'\n'
 
 def slowPrint(text):
     for i in text.splitlines():
@@ -86,7 +106,7 @@ def emit_dream(r, delta, avg):
         fake = 0
         norm = mapVals(r,rMin, rMax, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
-        slowPrint(parseLen(sen))
+        slowPrint(parse(sen))
         printer.feed(2)
     else:
         fake += 1
@@ -95,7 +115,7 @@ def emit_dream(r, delta, avg):
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 1.0, 0.0)
     sen = sg.generate(theObj, norm, delta, False)
-    slowPrint(parseLen(sen))
+    slowPrint(parse(sen))
     # slowPrint(str(norm))
     printer.feed(2)
 
@@ -123,7 +143,7 @@ printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
 printer.upsideDownOn()
 printer.feed(3)
-printer.print(parseLen('i am awake and I am APPLE (light)'))
+printer.print(parse('i am awake and I am APPLE (light)'))
 printer.feed(1)
 rPast = 0
 rMax = 0 # all-time max sensor reading
