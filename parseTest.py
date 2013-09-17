@@ -12,13 +12,11 @@ def parse(text):
     fin = []
     tally = 0
     for w in r:
-    	if len(w)+tally > (maxCol-1):
+    	if len(w)+len(curLine) > (maxCol-1):
     		fin.append(curLine)
     		curLine = ''
-    		tally = 0
     		curLine+=w
     	else:
     		curLine+=' '+w
-    		tally += len(w)+1
     print curLine
     print fin
