@@ -22,8 +22,8 @@ t = tmp.TMP102()
 readings = []
 fake = 0
 recent = False
-crescent = 5
-choke = 5
+crescent = 5 # this counter gets incremented everytime we sample; it gets reset when we emit a remark
+choke = 5 # this is a threshold level - until we've ignored choke number 
 
 def parseLen(text):
     L = []
@@ -135,14 +135,20 @@ def emit_dream(r, delta, avg):
 def emit_remark(r, delta, avg):
     global crescent
     global choke
-    if crescent > choke:
-        crescent = 0
+    if delta < 0:
+        if crescent > choke:
+            crescent = 0
+            norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
+            sen = sg.generate(theObj, norm, delta, False)
+            slowPrint(parse(sen))
+            printer.feed(2)
+        else:
+            pass
+    else:
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, False)
         slowPrint(parse(sen))
         printer.feed(2)
-    else:
-        pass
 
 def exit_handler():
     pass
