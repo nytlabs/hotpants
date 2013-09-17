@@ -22,8 +22,8 @@ t = tmp.TMP102()
 readings = []
 fake = 0
 recent = False
-crescent = 5 # this counter gets incremented everytime we sample; it gets reset when we emit a remark
-choke = 5 # this is a threshold level - until we've ignored choke number of emissions, we don't emit
+crescent = 10 # this counter gets incremented everytime we sample; it gets reset when we emit a remark
+choke = 10 # this is a threshold level - until we've ignored choke number of emissions, we don't emit
 
 def parseLen(text):
     L = []
