@@ -84,7 +84,7 @@ def checkSensor():
     for i in readings[-WINDOW_SIZE:]:
         avg += (i/float(WINDOW_SIZE))
 
-    delta = r-avg
+    delta = r-rPast
     
     # print(r, delta, avg)
     
