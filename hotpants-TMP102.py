@@ -18,11 +18,12 @@ theObj = 'MUG'
 humanCold = 20
 humanHot = 30
 
-
-
 t = tmp.TMP102()
 readings = []
 fake = 0
+recent = False
+crescent = 0
+choke = 20
 
 def parseLen(text):
     L = []
@@ -70,10 +71,13 @@ def checkSensor():
     global rMin
     global rMax
     global noop
+    global crescent
+    crescent += 1
     # change this to whatever get-readings call we need
     r = t.getTemp()
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
+        recent = False
         del readings[:-WINDOW_SIZE]
     
     avg = 0
@@ -112,18 +116,33 @@ def emit_dream(r, delta, avg):
         fake = 0
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
-
+        printer.flush()
+        printer.feed(1)
+        for i in xrange(Adafruit_Thermal.maxColumn):
+            printer.writeBytes(0xC4)
+        printer.flush()
         slowPrint(parse(sen))
+        printer.flush()
+        printer.feed(1)
+        for i in xrange(Adafruit_Thermal.maxColumn):
+            printer.writeBytes(0xC4)
+        printer.flush()
         printer.feed(2)
     else:
         fake += 1
         emit_remark(r,delta,avg)
 
 def emit_remark(r, delta, avg):
-    norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
-    sen = sg.generate(theObj, norm, delta, False)
-    slowPrint(parse(sen))
-    printer.feed(2)
+    global crescent
+    global choke
+    if crescent > choke:
+        crescent = 0
+        norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
+        sen = sg.generate(theObj, norm, delta, False)
+        slowPrint(parse(sen))
+        printer.feed(2)
+    else:
+        pass
 
 def exit_handler():
     pass
