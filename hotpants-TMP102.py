@@ -138,7 +138,7 @@ def emit_remark(r, delta, avg):
     global rPast
     print('crescent is ', crescent)
     print(r-rPast)
-    if r-rPast < 0:
+    if r-rPast <= 0:
         if crescent > choke:
             crescent = 0
             norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
