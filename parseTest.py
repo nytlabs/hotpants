@@ -8,7 +8,7 @@ printer.upsideDownOn()
 def parse(text):
     r = text.split(' ')
     # r.reverse()
-    curLine = []
+    curLine = ''
     fin = []
     tally = 0
     for w in r:
@@ -16,9 +16,9 @@ def parse(text):
     		fin.append(curLine)
     		curLine = []
     		tally = 0
-    		curLine.append(w)
+    		curLine+=w
     	else:
-    		curLine.append(w)
+    		curLine+=' '+w
     		tally += len(w)+1
     print curLine
     print fin
