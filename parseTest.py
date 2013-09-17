@@ -14,7 +14,7 @@ def parse(text):
     for w in r:
     	if len(w)+tally > (maxCol-1):
     		fin.append(curLine)
-    		curLine = []
+    		curLine = ''
     		tally = 0
     		curLine+=w
     	else:
