@@ -18,4 +18,3 @@ def parseTest(text):
     	else:
     		curLine.append(w)
     print fin
-    return
