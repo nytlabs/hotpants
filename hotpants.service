@@ -4,5 +4,9 @@ Description=NYT R&D HOT_PANTS TEMP SENSOR
 [Service]
 Type=simple
 WorkingDirectory=/home/root/hotpants/
+<<<<<<< HEAD
+ExecStart=/usr/bin/python hotpants-VCNL4000.py
+=======
 ExecStart=/usr/bin/python hotpants-TMP102.py
+>>>>>>> c5df8966a4007cb5abd6e1ef58bab7a7271a0868
 KillMode=process
