@@ -21,4 +21,4 @@ def parse(text):
     fin.append(curLine)
     rt = '\n'.join(fin)
     rt.lstrip(' ')
-    print rt
+    return rt
