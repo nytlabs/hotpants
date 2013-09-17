@@ -22,4 +22,4 @@ def parse(text):
     fin[0] = fin[0].lstrip()
     fin.reverse()
     rt = '\n'.join(fin)
-    return rt
+    return rt+'\n'
