@@ -10,12 +10,15 @@ def parse(text):
     # r.reverse()
     curLine = []
     fin = []
+    tally = 0
     for w in r:
-    	if len(w)+len(curLine) > maxCol:
+    	if len(w)+tally > maxCol:
     		fin.append(curLine)
     		curLine = []
+    		tally = 0
     		curLine.append(w)
     	else:
-    		curLine.join(w)
+    		curLine.append(w)
+    		tally += len(w)
     print curLine
     print fin
