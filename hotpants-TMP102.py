@@ -22,8 +22,8 @@ t = tmp.TMP102()
 readings = []
 fake = 0
 recent = False
-crescent = 5 # this counter gets incremented everytime we sample; it gets reset when we emit a remark
-choke = 5 # this is a threshold level - until we've ignored choke number of emissions, we don't emit
+crescent = 10 # this counter gets incremented everytime we sample; it gets reset when we emit a remark
+choke = 10 # this is a threshold level - until we've ignored choke number of emissions, we don't emit
 
 def parseLen(text):
     L = []
@@ -72,7 +72,6 @@ def checkSensor():
     global rMax
     global noop
     global crescent
-    crescent += 1
     # change this to whatever get-readings call we need
     r = t.getTemp()
     readings.append(r)
@@ -84,7 +83,7 @@ def checkSensor():
     for i in readings[-WINDOW_SIZE:]:
         avg += (i/float(WINDOW_SIZE))
 
-    delta = r-rPast
+    delta = r-avg
     
     # print(r, delta, avg)
     
@@ -96,8 +95,8 @@ def checkSensor():
         # does this merit an emission? Or should delta have to be > threshold?
 
     if abs(delta) > emission_threshold:
+        crescent += 1
         if len(readings)==WINDOW_SIZE:
-            # print('emitting remark')
             noop = 0
             emit_remark(r, delta, avg)
         else:
@@ -133,10 +132,11 @@ def emit_dream(r, delta, avg):
         emit_remark(r,delta,avg)
 
 def emit_remark(r, delta, avg):
-    print(delta)
     global crescent
     global choke
-    if delta < 0:
+    global rPast
+    print(r-rPast)
+    if r-rPast < 0:
         if crescent > choke:
             crescent = 0
             norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
@@ -144,7 +144,8 @@ def emit_remark(r, delta, avg):
             slowPrint(parse(sen))
             printer.feed(2)
         else:
-            pass
+            print('we are throttling now; readings to follow')
+            print(r, delta, avg)
     else:
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, False)
