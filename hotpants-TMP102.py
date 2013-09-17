@@ -72,7 +72,6 @@ def checkSensor():
     global rMax
     global noop
     global crescent
-    crescent += 1
     # change this to whatever get-readings call we need
     r = t.getTemp()
     readings.append(r)
@@ -96,6 +95,7 @@ def checkSensor():
         # does this merit an emission? Or should delta have to be > threshold?
 
     if abs(delta) > emission_threshold:
+        crescent += 1
         if len(readings)==WINDOW_SIZE:
             noop = 0
             emit_remark(r, delta, avg)
