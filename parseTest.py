@@ -5,7 +5,7 @@ printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
 printer.upsideDownOn()
 
-def parseTest(text):
+def parse(text):
     r = text.split(' ')
     # r.reverse()
     curLine = []
