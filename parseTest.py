@@ -1,4 +1,4 @@
-import Adafruit_Thermal
+from Adafruit_Thermal import *
 
 maxCol = 32
 printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
