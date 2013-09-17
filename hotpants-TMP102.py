@@ -136,6 +136,7 @@ def emit_remark(r, delta, avg):
     global crescent
     global choke
     global rPast
+    print('crescent is ', crescent)
     print(r-rPast)
     if r-rPast < 0:
         if crescent > choke:
