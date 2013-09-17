@@ -20,5 +20,4 @@ def parse(text):
     # print curLine
     fin.append(curLine)
     rt = '\n'.join(fin)
-    rt.lstrip(' ')
-    return rt
+    return rt.lstrip()
