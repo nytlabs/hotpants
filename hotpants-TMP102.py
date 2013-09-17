@@ -144,7 +144,8 @@ def emit_remark(r, delta, avg):
             slowPrint(parse(sen))
             printer.feed(2)
         else:
-            pass
+            print('we are throttling now; readings to follow')
+            print(r, delta, avg)
     else:
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, False)
