@@ -20,4 +20,4 @@ def parse(text):
     		curLine+=' '+w
     print curLine
     fin.append(curLine)
-    print fin
+    print '\n'.join(fin)
