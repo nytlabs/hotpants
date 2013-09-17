@@ -16,6 +16,7 @@ theObj = 'BLOCKS'
 v = vcnl.VCNL4000()
 v.continuousConversionOn()
 readings = []
+fake = 0
 
 def parseLen(text):
     L = []

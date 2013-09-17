@@ -15,6 +15,7 @@ import sentence_generator as sg
 theObj = 'APPLE'
 sensor_pin = 'P9_40'
 readings = []
+fake = 0
 
 def parseLen(text):
     L = []

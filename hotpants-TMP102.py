@@ -18,10 +18,11 @@ theObj = 'MUG'
 humanCold = 20
 humanHot = 30
 
-fake = 0
+
 
 t = tmp.TMP102()
 readings = []
+fake = 0
 
 def parseLen(text):
     L = []
