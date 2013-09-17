@@ -133,6 +133,7 @@ def emit_dream(r, delta, avg):
         emit_remark(r,delta,avg)
 
 def emit_remark(r, delta, avg):
+    print(delta)
     global crescent
     global choke
     if delta < 0:
