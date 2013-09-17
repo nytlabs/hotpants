@@ -107,10 +107,21 @@ def emit_dream(r, delta, avg):
         fake = 0
         norm = mapVals(r,rMin, rMax, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
-        for i in xrange(maxColumn):
+
+        printer.flush()
+        printer.feed(1)
+        for i in xrange(Adafruit_Thermal.maxColumn):
             printer.writeBytes(0xC4)
         printer.flush()
+        
         slowPrint(parse(sen))
+        
+        printer.flush()
+        printer.feed(1)
+        for i in xrange(Adafruit_Thermal.maxColumn):
+            printer.writeBytes(0xC4)
+        printer.flush()
+        
         printer.feed(2)
     else:
         fake += 1

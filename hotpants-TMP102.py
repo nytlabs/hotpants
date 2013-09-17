@@ -85,8 +85,6 @@ def checkSensor():
 
     delta = r-avg
     
-    # print(r, delta, avg)
-    
     if r > rMax:
         rMax = r
         # does this merit an emission? Or should delta have to be > threshold?
@@ -115,12 +113,15 @@ def emit_dream(r, delta, avg):
         fake = 0
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
+        
         printer.flush()
         printer.feed(1)
         for i in xrange(Adafruit_Thermal.maxColumn):
             printer.writeBytes(0xC4)
         printer.flush()
+
         slowPrint(parse(sen))
+        
         printer.flush()
         printer.feed(1)
         for i in xrange(Adafruit_Thermal.maxColumn):
