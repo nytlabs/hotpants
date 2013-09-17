@@ -84,7 +84,7 @@ def checkSensor():
     for i in readings[-WINDOW_SIZE:]:
         avg += (i/float(WINDOW_SIZE))
 
-    delta = r-rPast
+    delta = r-avg
     
     # print(r, delta, avg)
     
@@ -136,7 +136,8 @@ def emit_remark(r, delta, avg):
     print(delta)
     global crescent
     global choke
-    if delta < 0:
+    global rPast
+    if r-rPast < 0:
         if crescent > choke:
             crescent = 0
             norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
@@ -144,7 +145,8 @@ def emit_remark(r, delta, avg):
             slowPrint(parse(sen))
             printer.feed(2)
         else:
-            pass
+            print('we are throttling now; readings to follow')
+            print(r, delta, avg)
     else:
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, False)
