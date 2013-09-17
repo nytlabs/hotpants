@@ -19,5 +19,6 @@ def parse(text):
             curLine+=' '+w
     # print curLine
     fin.append(curLine)
+    print fin[0]
     rt = '\n'.join(fin)
     return rt.lstrip()
