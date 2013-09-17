@@ -17,4 +17,5 @@ def parse(text):
     		curLine.append(w)
     	else:
     		curLine.append(w)
+    print curLine
     print fin
