@@ -132,7 +132,10 @@ def emit_dream(r, delta, avg):
         printer.feed(2)
     else:
         fake += 1
-        emit_remark(r,delta,avg)
+        norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
+        sen = sg.generate(theObj, norm, delta, False)
+        slowPrint(parse(sen))
+        printer.feed(2)
 
 def emit_remark(r, delta, avg):
     global crescent
