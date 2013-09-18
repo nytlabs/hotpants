@@ -114,7 +114,7 @@ def emit_dream(r, delta, avg):
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
         
-        printer.flush()
+        # printer.flush()
         printer.feed(1)
         # for i in xrange(Adafruit_Thermal.maxColumn):
         #     printer.writeBytes(0xB0)
@@ -123,7 +123,7 @@ def emit_dream(r, delta, avg):
 
         slowPrint(parse(sen))
         
-        printer.flush()
+        # printer.flush()
         printer.feed(1)
         # for i in xrange(Adafruit_Thermal.maxColumn):
         #     printer.writeBytes(0xB0)
