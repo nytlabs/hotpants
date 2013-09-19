@@ -140,7 +140,9 @@ def exit_handler():
 
 def mapVals(val, inMin, inMax, outMin, outMax):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
-        return clamp(toRet, outMin, outMax)
+        toRet = clamp(toRet, outMin, outMax)
+        print('turned %s into %s'%(val,toRet))
+        return toRet
 
 def clamp(val, tmin, tmax):
     if val > tmax:
