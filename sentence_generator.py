@@ -35,7 +35,7 @@ data = {
 
 				[
 
-				{"string": "It is MOD DESC", "type": 0}, {"string": "It is MOD DESC now, would you like some DRINK?", "type": 0}, {"string": "Oh, it's getting MOD DESC. Might be time for DRINK.", "type": 0}, {"string": "Aren't you MOD DESC now? Some DRINK might be a good idea.", "type": 0}, {"string": "Sure is MOD DESC. Why don't you pour yourself a cup of DRINK?", "type": 0}
+				{"string": "It is MOD DESC", "type": 0}, {"string": "It is MOD DESC now, would you like some DRINK?", "type": 0}, {"string": "Oh, it's getting MOD DESC. Might be time for a cup of DRINK.", "type": 0}, {"string": "Aren't you MOD DESC now? Some DRINK might be a good idea.", "type": 0}, {"string": "Sure is MOD DESC. Why don't you pour youself a cup of DRINK?", "type": 0}, {"string": "A DRINK would be an excellent choice when it is MOD DESC like this.", "type": 0}, {"string": "DESC enough for you? You should consider some DRINK.", "type": 0}, {"string": "Perhaps you want to put some DRINK in me now that it is MOD DESC.", "type": 0}
 
 				]
 
@@ -45,7 +45,7 @@ data = {
 
 				[
 
-				["warm", 0, lambda m: m >= 0.5 and m <= 1.0], ["temperate", 0, lambda m: m >= 0.4 and m <= 0.6], ["cozy", 0, lambda m: m >= 0.5 and m <= 0.7], ["hot", 0, lambda m: m >= 0.7 and m <= 1.0], ["sweltering", 0, lambda m: m >= 0.8 and m <= 1.0], ["cool", 0, lambda m: m >= 0.2 and m <= 0.5], ["cold", 0, lambda m: m >= 0.0 and m <= 0.3], ["chilly", 0, lambda m: m >= 0.0 and m <= 0.3], ["freezing", 0, lambda m: m >= 0.0 and m <= 0.3], ["brisk", 0, lambda m: m >= 0.2 and m <= 0.5], ["lukewarm", 0, lambda m: m >= 0.4 and m <= 0.6]
+				["warm", 0, lambda m: m >= 0.5 and m <= 1.0], ["balmy", 0, lambda m: m >= 0.5 and m <= 0.8], ["temperate", 0, lambda m: m >= 0.4 and m <= 0.6], ["cozy", 0, lambda m: m >= 0.5 and m <= 0.7], ["toasty", 0, lambda m: m >= 0.7 and m <= 1.0], ["hot", 0, lambda m: m >= 0.7 and m <= 1.0], ["sweltering", 0, lambda m: m >= 0.8 and m <= 1.0], ["cool", 0, lambda m: m >= 0.2 and m <= 0.5], ["cold", 0, lambda m: m >= 0.0 and m <= 0.3], ["chilly", 0, lambda m: m >= 0.0 and m <= 0.3], ["freezing", 0, lambda m: m >= 0.0 and m <= 0.3], ["brisk", 0, lambda m: m >= 0.2 and m <= 0.5], ["lukewarm", 0, lambda m: m >= 0.4 and m <= 0.6], ["mild", 0, lambda m: m >= 0.4 and m <= 0.6]
 
 				]
 			,
@@ -53,7 +53,7 @@ data = {
 
 				[
 
-				["tea", lambda m: m >= 0.0 and m <= 0.5], ["coffee", lambda m: m >= 0.0 and m <= 0.5], ["cocoa", lambda m: m >= 0.0 and m <= 0.5], ["hot toddy", lambda m: m >= 0.0 and m <= 0.5], ["warm milk", lambda m: m >= 0.0 and m <= 0.5], ["hot cider", lambda m: m >= 0.0 and m <= 0.5], ["lemonade", lambda m: m >= 0.5 and m <= 1.0], ["water", lambda m: m >= 0.5 and m <= 1.0], ["iced tea", lambda m: m >= 0.5 and m <= 1.0], ["iced coffee", lambda m: m >= 0.5 and m <= 1.0], ["soda", lambda m: m >= 0.5 and m <= 1.0], ["seltzer", lambda m: m >= 0.5 and m <= 1.0], ["cold drink", lambda m: m >= 0.5 and m <= 1.0], ["hot or cold beverage", lambda m: m >= 0.4 and m <= 0.6]
+				["tea", lambda m: m >= 0.0 and m <= 0.5], ["coffee", lambda m: m >= 0.0 and m <= 0.5], ["cocoa", lambda m: m >= 0.0 and m <= 0.5], ["hot toddy", lambda m: m >= 0.0 and m <= 0.5], ["warm milk", lambda m: m >= 0.0 and m <= 0.5], ["hot cider", lambda m: m >= 0.0 and m <= 0.5], ["lemonade", lambda m: m >= 0.5 and m <= 1.0], ["fresh juice", lambda m: m >= 0.5 and m <= 1.0], ["water", lambda m: m >= 0.5 and m <= 1.0], ["iced tea", lambda m: m >= 0.5 and m <= 1.0], ["iced coffee", lambda m: m >= 0.5 and m <= 1.0], ["soda", lambda m: m >= 0.5 and m <= 1.0], ["seltzer", lambda m: m >= 0.5 and m <= 1.0], ["cold drink", lambda m: m >= 0.5 and m <= 1.0], ["hot or cold beverage", lambda m: m >= 0.4 and m <= 0.6], ["cold beer", lambda m: m >= 0.5 and m <= 1.0], ["cold beer", lambda m: m >= 0.5 and m <= 1.0]
 
 				]
 			,
