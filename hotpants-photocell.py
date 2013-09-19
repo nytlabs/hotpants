@@ -83,6 +83,8 @@ def checkSensor():
     if r < rMin:
         rMin = r
         # does this merit an emission? Or should delta have to be > threshold?
+    
+    print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
 
     if abs(delta) > emission_threshold:
         if len(readings)==WINDOW_SIZE: # this test prevents emissions before WINDOW_SIZE samples have been taken
@@ -98,8 +100,6 @@ def checkSensor():
             # print('emitting dream')
             emit_dream(r, delta, avg)
     rPast = r
-
-    print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
 
 def emit_dream(r, delta, avg):
     global fake
@@ -142,7 +142,6 @@ def mapVals(val, inMin, inMax, outMin, outMax):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
         print('turned %s into %s'%(val,toRet))
         toRet = clamp(toRet, outMin, outMax)
-
         return toRet
 
 def clamp(val, tmin, tmax):
