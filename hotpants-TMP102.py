@@ -120,6 +120,7 @@ def emit_dream(r, delta, avg):
         #     printer.writeBytes(0xB0)
         # printer.flush()
         printer.print('            . . .             ')
+        printer.feed(1)
 
         slowPrint(parse(sen))
         
