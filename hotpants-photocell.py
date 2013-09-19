@@ -15,6 +15,7 @@ import sentence_generator as sg
 theObj = 'APPLE'
 sensor_pin = 'P9_40'
 readings = []
+fake = 0
 
 def parseLen(text):
     L = []
@@ -23,6 +24,7 @@ def parseLen(text):
     # "call the police, it is faint-hearted" should be printed as
     # "rted" then linebreak then "Call the police, it is faint-hea"
     # which is "rted\nCall the police, it is faint-hea"
+    # "faint-hearted\nCall the police, it is"
 
     if len(text) > Adafruit_Thermal.maxColumn: # 32 is defined by the printer; max chars per line
         r = len(text)%32
@@ -32,6 +34,25 @@ def parseLen(text):
     else:
         L.append(text)
     return ''.join(L)
+
+def parse(text):
+    r = text.split(' ')
+    curLine = ''
+    fin = []
+    tally = 0
+    for w in r:
+        if len(w)+len(curLine) > (Adafruit_Thermal.maxColumn-1):
+            fin.append(curLine)
+            curLine = ''
+            curLine+=w
+        else:
+            curLine+=' '+w
+    # print curLine
+    fin.append(curLine)
+    fin[0] = fin[0].lstrip()
+    fin.reverse()
+    rt = '\n'.join(fin)
+    return rt+'\n'
 
 def slowPrint(text):
     for i in text.splitlines():
@@ -81,18 +102,37 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
-    norm = mapVals(r,rMin, rMax, 1.0, 0.0) # reversed this because for vcnl4000, hi means close
-    sen = sg.generate(theObj, norm, delta, True)
-    slowPrint(parseLen(sen))
-    # slowPrint(str(norm))
-    printer.feed(1)
-    slowPrint(parseLen('DREAM: '+str(time.ctime())))
-    printer.feed(2)
+    global fake
+    if fake == 5:
+        fake = 0
+        norm = mapVals(r,rMin, rMax, 0.0, 0.999)
+        sen = sg.generate(theObj, norm, delta, True)
+        
+        printer.flush()
+        printer.feed(1)
+        # for i in xrange(Adafruit_Thermal.maxColumn):
+        #     printer.writeBytes(0xB0)
+        # printer.flush()
+        printer.print('            . . .             ')
+        
+        slowPrint(parse(sen))
+        
+        printer.flush()
+        printer.feed(1)
+        # for i in xrange(Adafruit_Thermal.maxColumn):
+        #     printer.writeBytes(0xB0)
+        # printer.flush()
+        printer.print('            . . .             ')
+
+        printer.feed(2)
+    else:
+        fake += 1
+        emit_remark(r,delta,avg)
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 1.0, 0.0)
     sen = sg.generate(theObj, norm, delta, False)
-    slowPrint(parseLen(sen))
+    slowPrint(parse(sen))
     # slowPrint(str(norm))
     printer.feed(2)
 
@@ -120,7 +160,7 @@ printer = Adafruit_Thermal("/dev/ttyO2", 19200, timeout=5)
 printer.begin()
 printer.upsideDownOn()
 printer.feed(3)
-printer.print(parseLen('i am awake and I am APPLE (light)'))
+printer.print(parse('i am awake and I am APPLE (light)'))
 printer.feed(1)
 rPast = 0
 rMax = 0 # all-time max sensor reading
