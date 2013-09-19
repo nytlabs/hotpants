@@ -105,29 +105,26 @@ def emit_dream(r, delta, avg):
     global fake
     if fake == 5:
         fake = 0
-        norm = mapVals(r,rMin, rMax, 0.0, 0.999)
+        norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, True)
         
-        printer.flush()
-        printer.feed(1)
-        # for i in xrange(Adafruit_Thermal.maxColumn):
-        #     printer.writeBytes(0xB0)
         # printer.flush()
+        printer.feed(1)
         printer.print('            . . .             ')
-        
+        printer.feed(1)
+
         slowPrint(parse(sen))
         
-        printer.flush()
-        printer.feed(1)
-        # for i in xrange(Adafruit_Thermal.maxColumn):
-        #     printer.writeBytes(0xB0)
         # printer.flush()
+        printer.feed(1)
         printer.print('            . . .             ')
-
         printer.feed(2)
     else:
         fake += 1
-        emit_remark(r,delta,avg)
+        norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
+        sen = sg.generate(theObj, norm, delta, False)
+        slowPrint(parse(sen))
+        printer.feed(2)
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 1.0, 0.0)
