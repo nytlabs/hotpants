@@ -76,8 +76,6 @@ def checkSensor():
 
     delta = r-rPast
     # delta = r-avg
-
-    print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
     
     if r > rMax:
         rMax = r
@@ -100,6 +98,8 @@ def checkSensor():
             # print('emitting dream')
             emit_dream(r, delta, avg)
     rPast = r
+
+    print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
 
 def emit_dream(r, delta, avg):
     global fake
