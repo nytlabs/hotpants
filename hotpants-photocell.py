@@ -169,7 +169,7 @@ rMin = 100000 # all-time min sensor reading
 WINDOW_SIZE = 30 # size of moving-window avg
 noop = 0 # number of intervals passed without a trigger
 noop_threshold = 480
-emission_threshold = 0.01 # changed this for vcnl4000, used to be 0.7
+emission_threshold = 0.1 # changed this for vcnl4000, used to be 0.7
 
 while True:
     checkSensor()
