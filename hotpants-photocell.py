@@ -84,7 +84,7 @@ def checkSensor():
         rMin = r
         # does this merit an emission? Or should delta have to be > threshold?
     
-    print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
+    # print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
 
     if abs(delta) > emission_threshold:
         if len(readings)==WINDOW_SIZE: # this test prevents emissions before WINDOW_SIZE samples have been taken
