@@ -105,7 +105,7 @@ def emit_dream(r, delta, avg):
     global fake
     if fake == 5:
         fake = 0
-        norm = mapVals(r, rMin, rMax, 0.0, 0.999)
+        # norm = mapVals(r, rMin, rMax, 0.0, 0.999)
         # sen = sg.generate(theObj, (1.0-norm), delta, True) # reverse the range so 1=no light, 0=full light
         sen = sg.generate(theObj, (1.0-r), delta, True) # reverse the range so 1=no light, 0=full light
         
@@ -122,8 +122,8 @@ def emit_dream(r, delta, avg):
         printer.feed(2)
     else:
         fake += 1
-        norm = mapVals(r, rMin, rMax, 0.0, 0.999)
-        sen = sg.generate(theObj, (1.0-norm), delta, False) # reverse the range so 1=no light, 0=full light
+        # norm = mapVals(r, rMin, rMax, 0.0, 0.999)
+        sen = sg.generate(theObj, (1.0-r), delta, False) # reverse the range so 1=no light, 0=full light
         slowPrint(parse(sen))
         printer.feed(2)
 
