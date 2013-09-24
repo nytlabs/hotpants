@@ -39,7 +39,6 @@ def parse(text):
     r = text.split(' ')
     curLine = ''
     fin = []
-    tally = 0
     for w in r:
         if len(w)+len(curLine) > (Adafruit_Thermal.maxColumn-1):
             fin.append(curLine)
@@ -84,7 +83,7 @@ def checkSensor():
         rMin = r
         # does this merit an emission? Or should delta have to be > threshold?
     
-    print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
+    # print('%0.3f\t%0.3f\t%0.3f\t%0.3f\t%0.3f'%(r, delta, avg, rMin, rMax))
 
     if abs(delta) > emission_threshold:
         if len(readings)==WINDOW_SIZE: # this test prevents emissions before WINDOW_SIZE samples have been taken
@@ -102,12 +101,13 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
+    print('%0.3f\t%0.3f\t%0.3f'%(r, delta, avg))
     global fake
     if fake == 5:
         fake = 0
-        norm = mapVals(r, rMin, rMax, 0.0, 0.999)
+        # norm = mapVals(r, rMin, rMax, 0.0, 0.999)
         # sen = sg.generate(theObj, (1.0-norm), delta, True) # reverse the range so 1=no light, 0=full light
-        sen = sg.generate(theObj, (1.0-r), delta, True) # reverse the range so 1=no light, 0=full light
+        sen = sg.generate(theObj, r, delta, True) # reverse the range so 1=no light, 0=full light
         
         # printer.flush()
         printer.feed(1)
@@ -122,15 +122,16 @@ def emit_dream(r, delta, avg):
         printer.feed(2)
     else:
         fake += 1
-        norm = mapVals(r, rMin, rMax, 0.0, 0.999)
-        sen = sg.generate(theObj, (1.0-norm), delta, False) # reverse the range so 1=no light, 0=full light
+        # norm = mapVals(r, rMin, rMax, 0.0, 0.999)
+        sen = sg.generate(theObj, r, delta, False) # reverse the range so 1=no light, 0=full light
         slowPrint(parse(sen))
         printer.feed(2)
 
 def emit_remark(r, delta, avg):
-    norm = mapVals(r, rMin, rMax, 1.0, 0.0)
+    print('%0.3f\t%0.3f\t%0.3f'%(r, delta, avg))
+    # norm = mapVals(r, rMin, rMax, 1.0, 0.0)
     # sen = sg.generate(theObj, (1.0-norm), delta, False) # reverse the range so 1=no light, 0=full light
-    sen = sg.generate(theObj, (1.0-r), delta, False) # reverse the range so 1=no light, 0=full light
+    sen = sg.generate(theObj, r, delta, False) # reverse the range so 1=no light, 0=full light
     slowPrint(parse(sen))
     # slowPrint(str(norm))
     printer.feed(2)
@@ -169,7 +170,7 @@ rMin = 100000 # all-time min sensor reading
 WINDOW_SIZE = 30 # size of moving-window avg
 noop = 0 # number of intervals passed without a trigger
 noop_threshold = 480
-emission_threshold = 0.01 # changed this for vcnl4000, used to be 0.7
+emission_threshold = 0.1 # changed this for vcnl4000, used to be 0.7
 
 while True:
     checkSensor()
