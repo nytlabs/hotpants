@@ -104,6 +104,11 @@ data = {
 def generate(obj, reading, diff, dream=False):
 	print 'received %s %s %s %s' % (obj, reading, diff, dream)
 
+	if reading < 0:
+		reading = 0
+	if reading > 1:
+		reading = 1
+
 	if dream==True:
 		output = random.choice(data[obj]["dreams"])
 		return output
@@ -152,7 +157,7 @@ def generate(obj, reading, diff, dream=False):
 
 
 ### EXAMPLE ###
-# sentence = generate("BLOCKS", random.random(), random.random())
-# sentence = generate("APPLE", random.random(), random.random(), True)
+# sentence = generate("BLOCKS", random.random(), random.random()) # this won't generate anything like a realistic output
+# sentence = generate("APPLE", random.random(), random.random(), True) # because the sensors are listening to a signal and not white noise
 # print sentence
 
