@@ -276,8 +276,8 @@ def generate(obj, reading, diff, dream=False):
 			else:
 				output = sentence["string"].lstrip()
 
-		# print 'returning %s'%(output[0].upper() + output[1:])
-		print 'readings: %s %s %s' % (reading, diff, dream)
+		print 'returning %s'%(output[0].upper() + output[1:])
+		# print 'readings: %s %s %s' % (reading, diff, dream)
 		return output[0].upper() + output[1:]
 
 
