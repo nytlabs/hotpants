@@ -4,21 +4,24 @@ import random
 
 data = { 
 	"APPLE" : {
+
 			"sentences" : 
 
 				[
 				{"string": "It is MOD DESC", "type": 0},
 				{"string": "This light is MOD DESC", "type": 0},
-				{"string": "Oh, it's MOD DESC", "type": 0},
-				{"string": "Oh, that's MOD DESC", "type": 0},
+				{"string": "Well, it's MOD DESC", "type": 0},
+				{"string": "Oh, how MOD DESC it is here.", "type": 0},
+				{"string": "I see that it is MOD DESC", "type": 0},
 				{"string": "MOD DESC now", "type": 0},
-				{"string": "Well, that's MOD DESC", "type": 0},
+				{"string": "Well, isn't it MOD DESC?", "type": 0},
 				{"string": "I am MOD DESC", "type": 1},
 				{"string": "Am I DESC?", "type": 2},
 				{"string": "Is it DESC?", "type": 3},
 				{"string": "Well now I'm MOD DESC", "type": 4},
 				{"string": "My skin is MOD DESC", "type": 4},
-				{"string": "I feel DESC me", "type": 5}
+				{"string": "I feel DESC me", "type": 5},
+				{"string": "There is DESC me once again", "type": 5}
 				]
 
 			, 
@@ -27,11 +30,16 @@ data = {
 
 				[
 				["light", 0, lambda m: m >= 0.5 and m <= 1.0],
+				["well-lit", 0, lambda m: m >= 0.5 and m <= 1.0],
 				["bright", 0, lambda m: m >= 0.6 and m <= 1.0],
+				["full of light", 0, lambda m: m >= 0.7 and m <= 1.0],
+				["sunny", 0, lambda m: m >= 0.5 and m <= 1.0],
 				["beaming", 0, lambda m: m >= 0.8 and m <= 1.0],
 				["dark", 0, lambda m: m >= 0.0 and m <= 0.5],
+				["subdued", 0, lambda m: m >= 0.0 and m <= 0.5],
 				["murky", 0, lambda m: m >= 0.0 and m <= 0.5],
 				["shadowy", 0, lambda m: m >= 0.0 and m <= 0.5],
+				["shaded", 1, lambda m: m >= 0.0 and m <= 0.5],
 				["basking", 1, lambda m: m >= 0.5 and m <= 1.0],
 				["shaded", 1, lambda m: m >= 0.0 and m <= 0.5],
 				["ripening", 1, lambda m: m >= 0.5 and m <= 1.0],
@@ -41,8 +49,12 @@ data = {
 				["bathed in light", 4, lambda m: m >= 0.5 and m <= 1.0],
 				["illuminated", 4, lambda m: m >= 0.6 and m <= 1.0],
 				["red", 4, lambda m: m >= 0.0 and m <= 1.0] ,
+				["cool and shaded", 4, lambda m: m >= 0.0 and m <= 0.5],
 				["light shining on", 5, lambda m: m >= 0.5 and m <= 1.0],
-				["shadow falling on", 5, lambda m: m >= 0.5 and m <= 1.0] 
+				["brightness on", 5, lambda m: m >= 0.5 and m <= 1.0],
+				["shade on", 5, lambda m: m >= 0.5 and m <= 1.0],
+				["shadow falling on", 5, lambda m: m >= 0.5 and m <= 1.0],
+				["darkness on", 5, lambda m: m >= 0.0 and m <= 0.5]
 				]
 			,
 			"dreams" :
@@ -52,7 +64,9 @@ data = {
 				"When I was green, there was much more firmness inside",
 				"The time I fell to the ground, there had been less light that day",
 				"I haven't noticed any bees in a while",
-				"There were big green leaves atop my crown"
+				"There were big green leaves atop my crown",
+				"There were many more like me clustered on a branch.", 
+				"I have grown softer during the brightness."
 				]
 
 			  
