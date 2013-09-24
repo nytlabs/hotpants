@@ -101,7 +101,7 @@ def checkSensor():
     rPast = r
 
 def emit_dream(r, delta, avg):
-    print('%0.3f\t%0.3f\t%0.3f'%(r, delta, avg))
+    # print('%0.3f\t%0.3f\t%0.3f'%(r, delta, avg))
     global fake
     if fake == 5:
         fake = 0
@@ -128,7 +128,7 @@ def emit_dream(r, delta, avg):
         printer.feed(2)
 
 def emit_remark(r, delta, avg):
-    print('%0.3f\t%0.3f\t%0.3f'%(r, delta, avg))
+    # print('%0.3f\t%0.3f\t%0.3f'%(r, delta, avg))
     # norm = mapVals(r, rMin, rMax, 1.0, 0.0)
     # sen = sg.generate(theObj, (1.0-norm), delta, False) # reverse the range so 1=no light, 0=full light
     sen = sg.generate(theObj, r, delta, False) # reverse the range so 1=no light, 0=full light
@@ -143,7 +143,7 @@ def exit_handler():
 
 def mapVals(val, inMin, inMax, outMin, outMax):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
-        print('turned %s into %s'%(val,toRet))
+        # print('turned %s into %s'%(val,toRet))
         toRet = clamp(toRet, outMin, outMax)
         return toRet
 
