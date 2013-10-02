@@ -128,7 +128,7 @@ def emit_dream(r, delta, avg):
         printer.feed(4) # changed this to force paper out of box
 
 def emit_remark(r, delta, avg):
-    norm = mapVals(r,rMin, rMax, 1.0, 0.0)
+    norm = mapVals(r,rMin, rMax, 0.0, 0.999)
     sen = sg.generate(theObj, norm, delta, False)
     slowPrint(parse(sen))
     # slowPrint(str(norm))
@@ -142,7 +142,8 @@ def exit_handler():
 
 def mapVals(val, inMin, inMax, outMin, outMax):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
-        return clamp(toRet, outMin, outMax)
+        # return clamp(toRet, outMin, outMax)
+        return toRet
 
 def clamp(val, tmin, tmax):
     if val > tmax:
