@@ -130,7 +130,7 @@ def emit_dream(r, delta, avg):
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, False)
         slowPrint(parse(sen))
-        printer.feed(2)
+        printer.feed(4) # changed this to force paper out of box
 
 def emit_remark(r, delta, avg):
     global crescent
@@ -144,7 +144,7 @@ def emit_remark(r, delta, avg):
             norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
             sen = sg.generate(theObj, norm, delta, False)
             slowPrint(parse(sen))
-            printer.feed(2)
+            printer.feed(4) # changed this to force paper out of box
         else:
             print('we are throttling now; readings to follow')
             print(r, delta, avg)
@@ -152,7 +152,7 @@ def emit_remark(r, delta, avg):
         norm = mapVals(r,humanCold, humanHot, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, False)
         slowPrint(parse(sen))
-        printer.feed(2)
+        printer.feed(4) # changed this to force paper out of box
 
 def exit_handler():
     pass

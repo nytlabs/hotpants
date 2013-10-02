@@ -124,14 +124,14 @@ def emit_dream(r, delta, avg):
         norm = mapVals(r,rMin, rMax, 0.0, 0.999)
         sen = sg.generate(theObj, norm, delta, False)
         slowPrint(parse(sen))
-        printer.feed(2)
+        printer.feed(4) # changed this to force paper out of box
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 1.0, 0.0)
     sen = sg.generate(theObj, norm, delta, False)
     slowPrint(parse(sen))
     # slowPrint(str(norm))
-    printer.feed(2)
+    printer.feed(4) # changed this to force paper out of box
 
 def exit_handler():
     pass

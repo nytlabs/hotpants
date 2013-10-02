@@ -125,7 +125,7 @@ def emit_dream(r, delta, avg):
         # norm = mapVals(r, rMin, rMax, 0.0, 0.999)
         sen = sg.generate(theObj, r, delta, False) # reverse the range so 1=no light, 0=full light
         slowPrint(parse(sen))
-        printer.feed(2)
+        printer.feed(4) # changed this to force paper out of box
 
 def emit_remark(r, delta, avg):
     # print('%0.3f\t%0.3f\t%0.3f'%(r, delta, avg))
@@ -134,7 +134,7 @@ def emit_remark(r, delta, avg):
     sen = sg.generate(theObj, r, delta, False) # reverse the range so 1=no light, 0=full light
     slowPrint(parse(sen))
     # slowPrint(str(norm))
-    printer.feed(2)
+    printer.feed(4) # changed this to force paper out of box
 
 def exit_handler():
     print('exiting')
