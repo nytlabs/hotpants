@@ -75,8 +75,8 @@ def checkSensor():
     for i in readings:
         avg += (i/float(len(readings)))
 
-    # delta = r-rPast
-    delta = r-avg
+    delta = r-rPast
+    # delta = r-avg
 
     print(r, delta, avg, rMin, rMax)
     
