@@ -247,7 +247,7 @@ def generate(obj, reading, diff, dream=False):
 
 		while descriptor is None:
 			d = random.choice(data[obj]["descriptors"])
-			print 'd is %s'%d
+			# print 'd is %s'%d
 			if d[1] == type: # this is never True; why? Answer, lambdas all had <, needed <= etc
 				if d[2](reading):
 					descriptor = d[0]
