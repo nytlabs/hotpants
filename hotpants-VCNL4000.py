@@ -66,7 +66,7 @@ def checkSensor():
     global noop
     # change this to whatever get-readings call we need
     r = v.readAmbient()
-    print(r)
+    # print(r)
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
         del readings[:-WINDOW_SIZE]
@@ -78,7 +78,7 @@ def checkSensor():
     delta = r-rPast
     # delta = r-avg
 
-    # print(r, delta, avg, rMin, rMax)
+    print(r, delta, avg, rMin, rMax)
     
     if r > rMax:
         rMax = r
