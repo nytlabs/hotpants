@@ -66,6 +66,7 @@ def checkSensor():
     global noop
     # change this to whatever get-readings call we need
     r = v.readAmbient()
+    print(r)
     readings.append(r)
     if len(readings)>WINDOW_SIZE:
         del readings[:-WINDOW_SIZE]
