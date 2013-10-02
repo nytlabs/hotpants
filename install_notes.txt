@@ -1,0 +1,43 @@
+
+LOUIE -> VCNL4000
+HUEY  -> TMP102
+DEWEY-> photocell
+
+HOW TO EDIT HOTPANTS SCRIPTS
+connect ethernet to board (NOTE, board is screwed into box - it doesn't come out)
+ssh root@[name_on_sticker].local
+password: just press enter
+cd hotpants
+ok, from here you can directly edit the files.
+LOUIE -> hotpants-VCNL4000.py
+HUEY  -> hotpants-TMP102.py
+DEWEY-> hotpants-photocell.py
+After making changes, you must reboot the device in order to have them take effect
+
+HOW TO SEE THE PAST FEW PRINT STATEMENTS
+systemctl status hotpants.service -n 10
+(change the 10 to however many lines of debug output you'd like to see)
+
+FIRST DEBUG STEP should probably be to unplug it and plug it back in
+
+PRINTING PROBLEMS?
+ - feeding poorly
+ 	if the printer is printing over itself and not advancing properly, you may need to pull the paper for awhile (about a foot) to get it started.
+ 	if problems persist, the paper roll is probably smashed; swap in a new roll
+ - replacing paper rolls
+ 	the paper goes "underhand" and comes up to meet the print head. It's not damaging to install it backwards; you'll know it's backwards if it advances properly and doesn't print anything
+ - if despite all efforts the printer isn't printing, make sure the power supply is the correct one: there is only one 12v power supply (marked with pink tape) and it goes with the printer that does *not* have a little transparent window; it has what looks like white duct tape instead
+
+ 
+
+HOW TO SWAP OUT A BEAGLEBONE
+	when in SPARE_BBB (named "bender"), do:
+		ssh root@bender.local
+		(no password - just press enter)
+		nano /lib/systemd/system/hotpants.service
+		change the line "ExecStart=" to point to the script you need;
+		the script will be hotpants-TMP102.py (mug), hotpants-VCNL4000.py (blocks), or hotpants-photocell.py (apple)
+		save the file (ctrl-x, then "y" to save, then enter to overwrite the file)
+		now in terminal type "systemctl enable hotpants.timer"
+		then type "reboot"
+		system should start up and print "i am awake and i am [sesor_type]"
