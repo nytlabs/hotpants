@@ -107,7 +107,7 @@ def emit_dream(r, delta, avg):
     if fake == 5:
         fake = 0
         norm = mapVals(r,rMin, rMax, 0.0, 0.999)
-        sen = sg.generate(theObj, norm, delta, True)
+        sen = sg.generate(theObj, 1.0 - norm, delta, True)
         
         # printer.flush()
         printer.feed(1)
@@ -123,13 +123,13 @@ def emit_dream(r, delta, avg):
     else:
         fake += 1
         norm = mapVals(r,rMin, rMax, 0.0, 0.999)
-        sen = sg.generate(theObj, norm, delta, False)
+        sen = sg.generate(theObj, 1.0 - norm, delta, False)
         slowPrint(parse(sen))
         printer.feed(4) # changed this to force paper out of box
 
 def emit_remark(r, delta, avg):
     norm = mapVals(r,rMin, rMax, 0.0, 0.999)
-    sen = sg.generate(theObj, norm, delta, False)
+    sen = sg.generate(theObj, 1.0 - norm, delta, False)
     slowPrint(parse(sen))
     # slowPrint(str(norm))
     printer.feed(4) # changed this to force paper out of box
