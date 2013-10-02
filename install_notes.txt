@@ -14,6 +14,27 @@ HUEY  -> hotpants-TMP102.py
 DEWEY-> hotpants-photocell.py
 After making changes, you must reboot the device in order to have them take effect
 
+LIVE DEBUGGING
+...if you are going to be printing synchronous debug info (to see realtime sensor values) to the console, it is easier to turn off the auto-run services first.
+ssh into the board you want to debug
+turn off the auto-run features of the system with these lines:
+systemctl stop hotpants.timer
+systemctl stop hotpants.service
+systemctl disable hotpants.timer
+systemctl disable hotpants.service (don't worry if this line throws an error)
+...now the scripts will never run unless invoked, ie python hotpants-photocell.py
+now do whatever adjustments you like.
+to restore the auto-run scripts, do this:
+systemctl enable hotpants.timer
+reboot
+ 
+
+SENSITIVITY
+near the bottom of each script is the variable "emission_threshold"
+that's what you should change to make the sensor more or less sensitive
+before changing it, it might be helpful to uncomment the "print(r)" line at the beginning of the function checkSensor()
+uncommenting that line will give you realtime output from the sensor
+
 HOW TO SEE THE PAST FEW PRINT STATEMENTS
 systemctl status hotpants.service -n 10
 (change the 10 to however many lines of debug output you'd like to see)
@@ -28,7 +49,7 @@ PRINTING PROBLEMS?
  	the paper goes "underhand" and comes up to meet the print head. It's not damaging to install it backwards; you'll know it's backwards if it advances properly and doesn't print anything
  - if despite all efforts the printer isn't printing, make sure the power supply is the correct one: there is only one 12v power supply (marked with pink tape) and it goes with the printer that does *not* have a little transparent window; it has what looks like white duct tape instead
 
- 
+
 
 HOW TO SWAP OUT A BEAGLEBONE
 	when in SPARE_BBB (named "bender"), do:
