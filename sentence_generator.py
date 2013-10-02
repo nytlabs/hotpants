@@ -178,7 +178,7 @@ data = {
 				["people are", 1, lambda m: m >= 0.3 and m <= 1.0],
 				["a person is", 1, lambda m: m >= 0.3 and m <= 1.0],
 				["nobody is", 1, lambda m: m >= 0.0 and m <= 0.3],
-				["some people are", 0, lambda m: m >= 0.3 and m <= 1.0],
+				["some people are", 1, lambda m: m >= 0.3 and m <= 1.0],
 				["few people are", 1, lambda m: m >= 0.0 and m <= 0.3],
 				["no one", 2, lambda m: m >= 0.0 and m <= 0.2],
 				["someone", 2, lambda m: m >= 0.2 and m <= 1.0],
